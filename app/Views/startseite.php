@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Card Beispiel</title>
+    <title>Web-Entwicklung Team08</title>
     <link rel="stylesheet" type="text/css" href="../../public/css/style.css">
 
     <!-- Bootstrap 5 CDN -->
@@ -18,7 +18,12 @@
 <!-----------------------------Navigationsleiste Anfang----------------------------->
 <nav class="navbar navbar-bg px-3">
     <a class="navbar-brand d-flex align-items-center" href="#">
+
         <img src="/public/Images/07_-_WE-Logo.svg" alt="Logo" class="navbar_logo">
+        <div class = "navbar-items">Tasks</div>
+        <div class = "navbar-items">Placeholder</div>
+        <div class = "navbar-items">Placeholder</div>
+
     </a>
 </nav>
 <!-----------------------------Navigationsleiste Ende----------------------------->
