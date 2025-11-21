@@ -13,6 +13,7 @@
     >
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body class = "d-flex flex-column min-vh-100">
 
 <!-----------------------------Navigationsleiste Anfang----------------------------->
@@ -28,25 +29,16 @@
 </nav>
 <!-----------------------------Navigationsleiste Ende----------------------------->
 
-<div class="container mt-5" style="display: flex; align-items: center; justify-content: center">
-    <div class="card" style="width: 2200px;">
-
-        <div class="card-body">
-            <h5 class="card-title">Tasks</h5>
-
-        </div>
-    </div>
-</div>
 
 <!-----------------------------Footer Anfang----------------------------->
 <footer class = "footer_class fixed-bottom">
     <div class = "footer-content">
         <div  class="footer-element-left">©Web-Entwicklung Team 08 </div>
-            <div class ="right-group">
-                <div class ="footer-element-right">Impressum </div>
-                <div class ="footer-element-right">Datenschutz </div>
-                <div class ="footer-element-right">Kontakt</div>
-            </div>
+        <div class ="right-group">
+            <div class ="footer-element-right">Impressum </div>
+            <div class ="footer-element-right">Datenschutz </div>
+            <div class ="footer-element-right">Kontakt</div>
+        </div>
     </div>
 </footer>
 
@@ -57,5 +49,3 @@
 
 </body>
 </html>
-
-

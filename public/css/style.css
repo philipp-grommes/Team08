@@ -18,11 +18,12 @@
 }
 
 .footer_class{
+
     height: 80px;
     width: 100%;
     background-color: #002060;
     color: white;
-    margin-top: 100px;
+    margin-top: auto;
 
 }
 .footer-content{
@@ -33,7 +34,6 @@
     height: 100%;
     gap: 10px;
     padding: 5px 5px;
-    margin: 0;
 }
 .footer-element-right{
     display: flex;
