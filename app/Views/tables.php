@@ -28,7 +28,46 @@
     </div>
 </nav>
 <!-----------------------------Navigationsleiste Ende----------------------------->
+<div class="container mt-5" style="display: flex; align-items: center; justify-content: center">
+    <div class="card" style="width: 2200px;">
 
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <strong>
+                    <h1 class="fs-4">Spalten</h1>
+                </strong>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="bootstrap-table bootstrap5">
+                <div class="fixed-table-toolbar">
+                    <div class="bs-bars float-left">
+                        <div id="toolbar">
+                            <a href="#">
+                                <button class="btn btn-primary mb-2" type="button" value="button">Erstellen</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Board</th>
+                        <th>Sortid</th>
+                        <th>Spalte</th>
+                        <th>Spaltenbeschreibung</th>
+                        <th>Bearbeiten</th>
+                    </tr>
+                </thead>
+            </table>
+
+        </div>
+    </div>
+</div>
 
 <!-----------------------------Footer Anfang----------------------------->
 <footer class = "footer_class fixed-bottom">

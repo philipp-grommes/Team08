@@ -30,10 +30,8 @@
 
 <div class="container mt-5" style="display: flex; align-items: center; justify-content: center">
     <div class="card" style="width: 2200px;">
-
         <div class="card-body">
             <h5 class="card-title">Tasks</h5>
-
         </div>
     </div>
 </div>
