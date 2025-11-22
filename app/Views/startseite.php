@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web-Entwicklung Team08</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/style.css')?>">
 
     <!-- Bootstrap 5 CDN -->
     <link
@@ -18,7 +18,7 @@
 <!-----------------------------Navigationsleiste Anfang----------------------------->
 <nav class="navbar navbar-bg px-3">
     <div class="d-flex align-items-center h-100">
-            <img class="navbar_logo" src="Images/07_-_WE-Logo.svg" alt="Logo">
+            <img class="navbar_logo" src="<?=base_url('Images/07_-_WE-Logo.svg')?>" alt="Logo">
         <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Tasks</a>
         <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Boards</a>
         <a class="navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>

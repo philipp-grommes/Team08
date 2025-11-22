@@ -7,3 +7,4 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 $routes->get('tables', 'Tables::index');
+$routes->get('tables/add', 'Add::index');
