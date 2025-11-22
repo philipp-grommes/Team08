@@ -18,13 +18,11 @@
 
 <!-----------------------------Navigationsleiste Anfang----------------------------->
 <nav class="navbar navbar-bg px-3">
-    <div class="navbar-brand d-flex align-items-center">
-        <a href="<?= base_url() ?>" class="navbar-brand">
-            <img src="Images/07_-_WE-Logo.svg" alt="Logo" class="navbar_logo">
-        </a>
-        <a class = "navbar-items text-decoration-none" href="<?= base_url() ?>" >Tasks</a>
-        <a class = "navbar-items text-decoration-none" href="<?= base_url() ?>" >Boards</a>
-        <a class = "navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>
+    <div class="d-flex align-items-center h-100">
+        <img class="navbar_logo" src="Images/07_-_WE-Logo.svg" alt="Logo">
+        <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Tasks</a>
+        <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Boards</a>
+        <a class="navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>
     </div>
 </nav>
 <!-----------------------------Navigationsleiste Ende----------------------------->
@@ -52,7 +50,7 @@
                 </div>
             </div>
 
-            <table class="table">
+            <table class="table table-stripped">
                 <thead>
                     <tr>
                         <th>ID</th>

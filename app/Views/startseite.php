@@ -17,27 +17,27 @@
 
 <!-----------------------------Navigationsleiste Anfang----------------------------->
 <nav class="navbar navbar-bg px-3">
-    <div class="navbar-brand d-flex align-items-center">
-        <a href="<?= base_url() ?>" class="navbar-brand">
-            <img src="Images/07_-_WE-Logo.svg" alt="Logo" class="navbar_logo">
-        </a>
-        <a class = "navbar-items text-decoration-none" href="<?= base_url() ?>" >Tasks</a>
-        <a class = "navbar-items text-decoration-none" href="<?= base_url() ?>" >Boards</a>
-        <a class = "navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>
+    <div class="d-flex align-items-center h-100">
+            <img class="navbar_logo" src="Images/07_-_WE-Logo.svg" alt="Logo">
+        <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Tasks</a>
+        <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Boards</a>
+        <a class="navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>
     </div>
 </nav>
 <!-----------------------------Navigationsleiste Ende----------------------------->
 
 <div class="container mt-5" style="display: flex; align-items: center; justify-content: center">
-    <div class="card" style="width: 2200px;">
-        <div class="card-body">
-            <h5 class="card-title">Tasks</h5>
-        </div>
+<div class="card w-100">
+    <div class="card-header">
+        Tasks
+    </div>
+    <div class="card-body">
+    </div>
     </div>
 </div>
 
 <!-----------------------------Footer Anfang----------------------------->
-<footer class = "footer_class fixed-bottom">
+<footer class="footer_class mt-auto">
     <div class = "footer-content">
         <div  class="footer-element-left">©Web-Entwicklung Team 08 </div>
             <div class ="right-group">

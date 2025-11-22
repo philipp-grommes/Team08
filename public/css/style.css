@@ -3,11 +3,14 @@
     height: 100px;
     display: flex;
     align-items: center;
+    width: auto;
 }
 
 .navbar_logo{
-    height: 70px;
+    height: 50px;
     width: auto;
+
+
 }
 
 .navbar-items{
