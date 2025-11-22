@@ -21,7 +21,9 @@
 <!-----------------------------Navigationsleiste Anfang----------------------------->
 <nav class="navbar navbar-bg px-3">
     <div class="d-flex align-items-center h-100">
-        <img class="navbar_logo" src="<?=base_url('Images/07_-_WE-Logo.svg')?>" alt="Logo">
+        <a href="https://team08.wi1cm.uni-trier.de/public/">
+            <img class="navbar_logo" src="<?=base_url('Images/07_-_WE-Logo.svg')?>" alt="Logo">
+        </a>
         <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Tasks</a>
         <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Boards</a>
         <a class="navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>
@@ -103,7 +105,9 @@
 <!-----------------------------Footer Anfang----------------------------->
 <footer class = "footer_class mt-auto">
     <div class = "footer-content">
-        <div  class="footer-element-left">©Web-Entwicklung Team 08 </div>
+
+        <div class="footer-element-left">©Web-Entwicklung Team 08 </div>
+        
         <div class ="right-group">
             <div class ="footer-element-right">Impressum </div>
             <div class ="footer-element-right">Datenschutz </div>
