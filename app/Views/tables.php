@@ -52,8 +52,8 @@
                     </div>
                 </div>
             </div>
-
-            <table class="table stripped-table">
+        <div class = "table-responsive">
+            <table class="table stripped-table table-bordered ">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -85,7 +85,7 @@
                         <td>Allgemeine Todos</td>
                         <td>200</td>
                         <td>In Bearbeitung</td>
-                        <td>Todos sie aktuell bearbeitet werden</td>
+                        <td>Todos die aktuell bearbeitet werden</td>
                         <td>
                             <a href="<?= base_url('tables') ?>" class="text-decoration-none text-primary me-2">
                                 <i class="fa-solid fa-pen"></i>
@@ -96,7 +96,9 @@
                         </td>
                     </tr>
                 </tbody>
+
             </table>
+        </div>
         </div>
 
     </div>
