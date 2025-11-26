@@ -53,7 +53,7 @@
                 </div>
             </div>
         <div class = "table-responsive">
-            <table class="table stripped-table table-bordered ">
+            <table class="table table-striped table-bordered ">
                 <thead>
                     <tr>
                         <th>ID</th>
