@@ -4,8 +4,11 @@ namespace App\Controllers;
 
 class Tables extends BaseController
 {
-    public function index(): string
+    public function index()
     {
-        return view('tables');
+        echo view('templates/head');
+        echo view('templates/navbar');
+        echo view('tables');
+        echo view('templates/footer');
     }
 }

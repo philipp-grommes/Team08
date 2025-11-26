@@ -1,59 +1,22 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web-Entwicklung Team08</title>
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/style.css')?>">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <!-- Font-Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <!-- Bootstrap 5 CDN -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-
-<body class = "d-flex flex-column min-vh-100">
-
-<!-----------------------------Navigationsleiste Anfang----------------------------->
-<nav class="navbar navbar-bg px-3">
-    <div class="d-flex align-items-center h-100">
-        <a href="<?=base_url()?>">
-            <img class="navbar_logo" src="<?=base_url('Images/07_-_WE-Logo.svg')?>" alt="Logo">
-        </a>
-        <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Tasks</a>
-        <a class="navbar-items text-decoration-none" href="<?= base_url() ?>">Boards</a>
-        <a class="navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>
-    </div>
-</nav>
-<!-----------------------------Navigationsleiste Ende----------------------------->
 <div class="container mt-5" style="display: flex; align-items: center; justify-content: center">
     <div class="card w-100">
 
-        <div class="card-header">
-            <div class="d-flex justify-content-between">
+            <div class="card-header d-flex justify-content-between">
                 <strong>
                     <h1 class="fs-4">Spalten</h1>
                 </strong>
             </div>
-        </div>
 
-        <div class="card-body"> <div class="bootstrap-table bootstrap5">
-                <div class="fixed-table-toolbar">
-                    <div class="bs-bars float-left">
+        <div class="card-body">
+            <div class="bootstrap-table fixed-table-toolbar float-left">
                         <div id="toolbar">
                             <a href="<?=base_url('tables/add')?>">
-                                <button class="btn btn-primary mb-2" type="button" value="button">Erstellen</button>
+                                <button class="btn btn-primary mb-2" type="button">Erstellen</button>
                             </a>
                         </div>
-                    </div>
-                </div>
             </div>
-        <div class = "table-responsive">
-            <table class="table table-striped table-bordered ">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -103,25 +66,3 @@
 
     </div>
 </div>
-
-<!-----------------------------Footer Anfang----------------------------->
-<footer class = "footer_class mt-auto">
-    <div class = "footer-content">
-
-        <div class="footer-element-left">©Web-Entwicklung Team 08 </div>
-        
-        <div class ="right-group">
-            <div class ="footer-element-right">Impressum </div>
-            <div class ="footer-element-right">Datenschutz </div>
-            <div class ="footer-element-right">Kontakt</div>
-        </div>
-    </div>
-</footer>
-
-<!-----------------------------Footer Ende----------------------------->
-
-<!-- Bootstrap JS (optional) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
