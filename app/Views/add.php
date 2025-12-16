@@ -8,6 +8,7 @@
             </div>
 
         <div class="card-body">
+            <form action="<?= base_url('tables/speichern') ?>" method="post">
             <fieldset>
                 <div class="row mb-2">
                     <label for="designation" class="col-sm-2 col-form-label">Spalten-Bezeichnung</label>
@@ -38,19 +39,17 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="row mt-4">
-                <div class="col-sm-1">
-                    <button type="submit" class="btn btn-success mb-2 me-2" name="btnSpeichern" id="btnSpeichern">
-                        Speichern
-                    </button>
+                <div class="row mt-4">
+                    <div class="col-sm-10 offset-sm-2 d-flex">
+                        <button type="submit" class="btn btn-success me-2" name="btnSpeichern" id="btnSpeichern">
+                            Speichern
+                        </button>
+                        <a href="/tables/" class="btn btn-secondary" id="btnAbbrechen">
+                            Abbrechen
+                        </a>
+                    </div>
                 </div>
-                <div class="col-sm-1">
-                    <button type="submit" class="btn btn-secondary mb-2 me-2" name="btnAbbrechen" id="btnAbbrechen">
-                        Abbrechen
-                    </button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-

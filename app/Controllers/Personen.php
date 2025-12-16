@@ -17,6 +17,7 @@ class Personen extends BaseController {
         $data['personen'] = $this->PersonenModel->getpersonen();
 
         echo view( 'templates/head');
+        echo view( 'templates/navbar');
         echo view('pages/list_edit', $data);
         echo view( 'templates/footer');
 
@@ -31,6 +32,7 @@ class Personen extends BaseController {
             $data['personen'] = $this->PersonenModel->getpersonen($id);
 
         echo view( 'templates/head');
+        echo view( 'templates/navbar');
         echo view( 'pages/edit', $data);
         echo view( 'templates/footer');
 
@@ -49,7 +51,6 @@ class Personen extends BaseController {
                 $this->PersonenModel->createPerson();
             }
             return redirect()->to(base_url('personen/index_edit/'));
-
         }
         // Person löschen
         elseif (isset($_POST['btnLoeschen'])) {

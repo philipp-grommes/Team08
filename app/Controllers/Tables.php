@@ -19,4 +19,9 @@ class Tables extends BaseController
         echo view('add');
         echo view('templates/footer');
     }
+
+    public function postSpeichern(){
+        return redirect()->to(base_url('tables/'));
+    }
+
 }
