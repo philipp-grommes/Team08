@@ -1,6 +1,5 @@
-<card>
-    <div class="p-3">
-    <table class="table table-responsive table-bordered table-striped table-hover w-100 d-block d-md-table mt-2"
+<div class="container mt-3" style="display: flex; align-items: center; justify-content: center">
+    <table class="table table-responsive table-bordered table-striped table-hover w-100 d-block d-md-table"
            data-show-columns="true"
            showColumnsToggleAll="true"
            data-show-toggle="true"
@@ -8,13 +7,12 @@
            data-search="true"
            data-sort-stable="true"
            data-toolbar="#toolbar">
-
         <thead align="left">
         <tr>
-            <th data-sortable="true" style="width: 300px">ID</th>
-            <th data-sortable="true" style="width: 300px">Vorname</th>
-            <th data-sortable="true" style="width: 300px">Name</th>
-            <th style="width: 300px">E-Mail</th>
+            <th data-sortable="true">ID</th>
+            <th data-sortable="true">Vorname</th>
+            <th data-sortable="true">Name</th>
+            <th>E-Mail</th>
         </tr>
         </thead>
         <tbody>
@@ -29,5 +27,4 @@
 
         </tbody>
     </table>
-    </div>
-</card>
+</div>
