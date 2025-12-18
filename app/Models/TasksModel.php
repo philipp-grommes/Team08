@@ -12,6 +12,14 @@ class TasksModel extends Model{
             ->getResultArray();
     }
 
+    public function getTasks(): array {
+        return $this->db->table('tasks')
+            ->select('*')
+            ->orderBy('tasks', 'ASC')
+            ->get()
+            ->getResultArray();
+    }
+
 
 
 }
