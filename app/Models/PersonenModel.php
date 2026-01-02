@@ -30,10 +30,10 @@ class PersonenModel extends Model {
                 'name' => $_POST['name'],
                 'email' => $_POST['email']));
 
-            return redirect()->to(base_url('personen/index_edit'));
+            return redirect()->to(base_url('persons/index_edit'));
        }
 
-         return  redirect()->to(base_url('personen/ced_edit/'));
+         return  redirect()->to(base_url('persons/ced_edit/'));
 
     }
 

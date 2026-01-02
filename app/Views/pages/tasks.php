@@ -1,9 +1,9 @@
-<div class="card mt-2 mx-3">
+<div class="card mt-4 mx-3 mb-4">
     <div class="row">
         <div class="col-12">
             <div class="mx-3 mb-2 mt-2">
-                <a href="<?=base_url('')?>">
-                    <button class="btn btn-primary" type="button">Erstellen</button>
+                <a href="<?=base_url('/tasks/edit/0/0/')?>">
+                    <button class="btn btn-primary" name="btnNeu"  id="btnNeu" type="button"><i class="fas fa-plus-square"></i> Neu</button>
                 </a>
             </div>
         </div>
@@ -19,8 +19,16 @@
                             <strong>Erstellt am:</strong> <?php echo $item['erstellungsdatum']; ?>
                         </p>
                         <div class="mt-auto d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
-                            <a href="" class="btn btn-primary w-100 w-md-auto">Bearbeiten</a>
-                            <a href="" class="btn btn-primary w-100 w-md-auto" style="background-color: red; border: red">Löschen</a>
+                            <a href="<?=base_url('/tasks/edit/'.$item['id'].'/1/')?>">
+                                <button name="btnBearbeiten" id="btnBearbeiten" class="btn btn-primary w-100 w-md-auto">
+                                    <i class="fas fa-edit"></i> Bearbeiten
+                                </button>
+                            </a>
+                            <a href="<?=base_url('/tasks/edit/'.$item['id'].'/2/')?>">
+                                <button name="btnLoeschen" id="btnLoeschen" class="btn btn-primary w-100 w-md-auto" style="background-color: red; border: red">
+                                    <i class="fas fa-trash"></i> Löschen
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>

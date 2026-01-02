@@ -50,16 +50,16 @@ class Persons extends BaseController {
             else {
                 $this->PersonenModel->createPerson();
             }
-            return redirect()->to(base_url('personen/index_edit/'));
+            return redirect()->to(base_url('persons/index_edit/'));
         }
         // Person löschen
         elseif (isset($_POST['btnLoeschen'])) {
             $this->PersonenModel->deletePerson();
-            return redirect()->to(base_url('personen/index_edit/'));
+            return redirect()->to(base_url('persons/index_edit/'));
         }
         // Abbrechen
         elseif (isset($_POST['btnAbbrechen'])) {
-            return redirect()->to(base_url('personen/index_edit/'));
+            return redirect()->to(base_url('persons/index_edit/'));
         }
 
     }

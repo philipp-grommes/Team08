@@ -8,7 +8,7 @@
         </legend>
         <div class="card-body">
 
-            <form action="<?= base_url('personen/submit_edit') ?>" method="post">
+            <form action="<?= base_url('persons/submit_edit') ?>" method="post">
 
                 <div class="form-group row">
                     <label for="Vorname" class="col-sm-2 col-form-label">Vorname:</label>

@@ -9,7 +9,7 @@
         <div class="card-body">
 
             <div id="toolbar" >
-                <a href="<?=base_url('/personen/ced_edit/0/0/')?>">
+                <a href="<?=base_url('/persons/ced_edit/0/0/')?>">
                     <button class="btn btn-primary mb-2" type="button" name="btnNeu" id="btnNeu">
                         <i class="fas fa-plus-square"></i> Neu</button>
                 </a>
@@ -41,10 +41,10 @@
                         <td><?= $item['email']?></td>
                         <td>
                             <div class="btn-group">
-                                <a href="<?=base_url('/personen/ced_edit/' . $item['id'] . '/1/')?>">
+                                <a href="<?=base_url('/persons/ced_edit/' . $item['id'] . '/1/')?>">
                                     <button type='button' name='btnBearbeiten' id='btnBearbeiten' class='btn'><i style="color: Dodgerblue;" class="fas fa-edit"></i></button>
                                 </a>
-                                <a href="<?=base_url('/personen/ced_edit/' . $item['id'] . '/2/')?>">
+                                <a href="<?=base_url('/persons/ced_edit/' . $item['id'] . '/2/')?>">
                                     <button type='submit' name='btnLoeschen' id='btnLoeschen' class='btn'><i style="color: Dodgerblue;" class="fas fa-trash"></i></button>
                                 </a>
                             </div>
