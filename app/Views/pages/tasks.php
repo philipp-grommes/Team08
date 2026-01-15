@@ -16,8 +16,7 @@
                         <h6 class="card-subtitle mb-2 text-muted">ID: <?php echo $item['id']; ?></h6>
                         <p class="card-text">
                             <strong>Notizen:</strong> <?php echo $item['notizen']; ?><br>
-                            <strong>Erstellt am:</strong> <?php echo $item['erstellungsdatum']; ?>
-                        </p>
+                            <strong>Erstellt am:</strong> <?= date('d.m.Y', strtotime($item['erstellungsdatum'])); ?> </p>
                         <div class="mt-auto d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
                             <a href="<?=base_url('/tasks/edit/'.$item['id'].'/1/')?>">
                                 <button name="btnBearbeiten" id="btnBearbeiten" class="btn btn-primary w-100 w-md-auto">

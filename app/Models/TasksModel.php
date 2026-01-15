@@ -42,7 +42,9 @@ class TasksModel extends Model{
                 'spaltenid' => $_POST['spaltenid'],
                 'erinnerungsdatum' => $_POST['erinnerungsdatum'],
                 'erinnerung' => (int)$_POST['erinnerung'],
-                'notizen' => $_POST['notizen'] ?? ''));
+                'notizen' => $_POST['notizen'] ?? '',
+                'erstellungsdatum' => date('Y-m-d')
+                ));
 
             return redirect()->to(base_url('tasks/'));
         }
