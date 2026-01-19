@@ -28,7 +28,7 @@
                 <div class="form-group row mb-2">
                     <label for="taskartenid" class="col-sm-2 col-form-label">Taskart:</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="taskartenid" name="taskartenid " <?= $disabled ?>>
+                        <select class="form-control" id="taskartenid" name="taskartenid" <?= $disabled ?>>
                             <option value="">-- Bitte wählen --</option>
                             <?php if (isset($taskarten) && is_array($taskarten)): ?>
                                 <?php foreach ($taskarten as $taskart): ?>
