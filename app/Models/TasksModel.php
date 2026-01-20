@@ -4,14 +4,6 @@ use CodeIgniter\Model;
 
 class TasksModel extends Model{
 
-    public function getData(): array
-    {
-        return $this->db->table('personen')
-            ->select('*')
-            ->get()
-            ->getResultArray();
-    }
-
     public function getTasks($tasks_id = NULL): array {
         if ($tasks_id != NULL)
             return $this->db->table('tasks')

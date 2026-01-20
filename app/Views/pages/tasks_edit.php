@@ -3,7 +3,7 @@
     <div class="card bg-light mt-4 mb-4">
         <legend class="card-header">
             <div class="d-flex justify-content-between">
-                <div class="h5"><strong>Datensatz <?= $todo == 2 ? 'löschen' : 'bearbeiten oder neu erstellen' ?></strong></div>
+                <div class="h5"><strong>Task <?= $todo == 2 ? 'löschen' : 'bearbeiten oder neu erstellen' ?></strong></div>
             </div>
         </legend>
         <div class="card-body">
