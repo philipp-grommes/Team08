@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-use App\Models\TasksModel;
+use App\Models\PersonenModel;
 
 class Personen extends BaseController
 {
     public function getIndex(): void
     {
-        $tasksmodel= new TasksModel();
-        $data['personen'] = $tasksmodel->getData();
+        $personenModel= new PersonenModel();
+        $data['personen'] = $personenModel->getPersonen();
 
         echo view('templates/head');
         echo view('templates/navbar');

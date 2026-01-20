@@ -50,7 +50,8 @@ abstract class BaseController extends Controller
     {
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
-
+        $this->session = \Config\Services::session();
+        $this->validation = \Config\Services::validation();
         
 
         // Preload any models, libraries, etc, here.

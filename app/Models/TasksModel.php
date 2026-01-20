@@ -14,21 +14,22 @@ class TasksModel extends Model{
                 ->getRowArray();
         else
             return $this->db->table('tasks')
-            ->select('*')
-            ->orderBy('tasks', 'ASC')
-            ->get()
-            ->getResultArray();
+                ->select('tasks.*, personen.vorname, personen.name')
+                ->join('personen', 'personen.id = tasks.personenid')
+                ->orderBy('tasks', 'ASC')
+                ->get()
+                ->getResultArray();
 
 
     }
 
     public function createTask()
     {
-        if (!empty($_POST['task']) && !empty($_POST['taskartenid']) && !empty($_POST['personenid']) && !empty($_POST['erinnerungsdatum'])) {
+        if (!empty($_POST['tasks']) && !empty($_POST['taskartenid']) && !empty($_POST['personenid']) && !empty($_POST['erinnerungsdatum'])) {
 
 
             $this->tasks = $this->db->table('tasks');
-            $this->tasks->insert(array('tasks' => $_POST['task'],
+            $this->tasks->insert(array('tasks' => $_POST['tasks'],
                 'taskartenid' => $_POST['taskartenid'],
                 'personenid' => $_POST['personenid'],
                 'spaltenid' => $_POST['spaltenid'],
@@ -36,7 +37,7 @@ class TasksModel extends Model{
                 'erinnerung' => (int)$_POST['erinnerung'],
                 'notizen' => $_POST['notizen'] ?? '',
                 'erstellungsdatum' => date('Y-m-d')
-                ));
+            ));
 
             return redirect()->to(base_url('tasks/'));
         }
@@ -47,7 +48,7 @@ class TasksModel extends Model{
     {
         $this->tasks = $this->db->table('tasks');
         $this->tasks->where('tasks.id', $_POST['id']);
-        $this->tasks->update(array('tasks' => $_POST['task'],
+        $this->tasks->update(array('tasks' => $_POST['tasks'],
             'taskartenid' => $_POST['taskartenid'],
             'personenid' => $_POST['personenid'],
             'spaltenid' => $_POST['spaltenid'],
@@ -72,6 +73,10 @@ class TasksModel extends Model{
     }
     public function getBoards(): array{
         return $this->db->table('boards')->select('*')->get()->getResultArray();
+    }
+
+    public function getPersonen(): array{
+        return $this->db->table('personen')->select('*')->get()->getResultArray();
     }
 
 

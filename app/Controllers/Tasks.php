@@ -23,15 +23,13 @@ class Tasks extends BaseController {
     }
 
     public function getEdit($id = 0, $todo = 0) {
-        $data['personen'] = $this->TasksModel->getData();
+        $data['personen'] = $this->TasksModel->getPersonen();
         $data['taskarten'] = $this->TasksModel->getTaskarten();
         $data['spalten'] = $this->TasksModel->getSpalten();
         $data['boards'] = $this->TasksModel->getBoards();
         $data['todo'] = $todo;
-        // Person bearbeiten oder löschen
         if($id > 0 && ($todo == 1 || $todo == 2 ))
             $data['tasks'] = $this->TasksModel->getTasks($id);
-            $data['personen'] = $this->TasksModel->getData();
 
         echo view( 'templates/head');
         echo view( 'templates/navbar');
@@ -41,26 +39,41 @@ class Tasks extends BaseController {
     }
 
     public function postSubmit() {
+            $validation = \Config\Services::validation();
+            if (isset($_POST['btnSpeichern'])) {
 
-        if(isset($_POST['btnSpeichern'] )) {
+                if ($validation->run($_POST, 'tasksBearbeiten')) {
+                    if (isset($_POST['id']) && $_POST['id'] != '') {
+                        $this->TasksModel->updateTask();
+                    } else {
+                        $this->TasksModel->createTask();
+                    }
+                    return redirect()->to(base_url('tasks/'));
 
-            // Daten speichern
-            if(isset($_POST['id']) && $_POST['id'] != '') {
-                $this->TasksModel->updateTask();
+                } else {
+
+                    $id = $this->request->getPost('id') ?: 0;
+                    $todo = ($id > 0) ? 1 : 0;
+
+                    $data['todo'] = $todo;
+                    $data['tasks'] = $_POST;
+                    $data['error'] = $validation->getErrors();
+                    $data['personen'] = $this->TasksModel->getPersonen();
+                    $data['taskarten'] = $this->TasksModel->getTaskarten();
+                    $data['spalten'] = $this->TasksModel->getSpalten();
+                    $data['boards'] = $this->TasksModel->getBoards();
+
+                    echo view('templates/head');
+                    echo view('templates/navbar');
+                    echo view('pages/tasks_edit', $data);
+                    echo view('templates/footer');
+                    return;
+                }
             }
-            else {
-                $this->TasksModel->createTask();
+            elseif (isset($_POST['btnLoeschen'])) {
+                $this->TasksModel->deleteTask();
+                return redirect()->to(base_url('tasks/'));
             }
             return redirect()->to(base_url('tasks/'));
         }
-        // Person löschen
-        elseif (isset($_POST['btnLoeschen'])) {
-            $this->TasksModel->deleteTask();
-            return redirect()->to(base_url('tasks/'));
-        }
-        // Abbrechen
-        elseif (isset($_POST['btnAbbrechen'])) {
-            return redirect()->to(base_url('tasks/'));
-        }
-    }
 }

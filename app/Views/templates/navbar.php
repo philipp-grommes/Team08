@@ -11,7 +11,7 @@
             <div class="navbar-nav">
         <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url('tasks') ?>">Tasks</a>
         <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url() ?>">Boards</a>
-        <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url('tables') ?>">Spalten</a>
+        <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url('spalten') ?>">Spalten</a>
         <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url('personen') ?>">Personen</a>
             </div>
     </div>
