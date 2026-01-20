@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="card bg-light mt-4 mb-4">
         <legend class="card-header">
@@ -24,24 +23,56 @@
                     </div>
                 </div>
 
+
+
                 <div class="form-group row mb-2">
-                    <label for="taskartenid" class="col-sm-2 col-form-label">TaskartenID:</label>
+                    <label for="taskartenid" class="col-sm-2 col-form-label">Taskart:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="taskartenid" name="taskartenid" value="<?=isset($tasks['taskartenid']) ? $tasks['taskartenid'] : '' ?>" <?= $lock ?>>
+                        <select class="form-control" id="taskartenid" name="taskartenid" <?= $disabled ?>>
+                            <option value="">-- Bitte wählen --</option>
+                            <?php if (isset($taskarten) && is_array($taskarten)): ?>
+                                <?php foreach ($taskarten as $taskart): ?>
+                                    <option value="<?= $taskart['id'] ?>"
+                                            <?= (isset($tasks['taskartenid']) && $tasks['taskartenid'] == $taskart['id']) ? 'selected' : '' ?>>
+                                        <?= $taskart['taskart']?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group row mb-2">
-                    <label for="personenid" class="col-sm-2 col-form-label">PersonenID:</label>
+                    <label for="personenid" class="col-sm-2 col-form-label">Person:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  id="personenid" name="personenid" value="<?=isset($tasks['personenid']) ? $tasks['personenid'] : '' ?>" <?= $lock ?> >
+                        <select class="form-control" id="personenid" name="personenid" <?= $disabled ?>>
+                            <option value="">-- Bitte wählen --</option>
+                            <?php if (isset($personen) && is_array($personen)): ?>
+                                <?php foreach ($personen as $person): ?>
+                                    <option value="<?= $person['id'] ?>"
+                                            <?= (isset($tasks['personenid']) && $tasks['personenid'] == $person['id']) ? 'selected' : '' ?>>
+                                        <?= $person['vorname'] . ' ' . $person['name'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group row mb-2">
-                    <label for="spaltenid" class="col-sm-2 col-form-label">SpaltenID:</label>
+                    <label for="spaltenid" class="col-sm-2 col-form-label">Spalte:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control"  id="spaltenid" name="spaltenid" value="<?=isset($tasks['spaltenid']) ? $tasks['spaltenid'] : '' ?>" <?= $lock ?> >
+                        <select class="form-control" id="spaltenid" name="spaltenid" <?= $disabled ?>>
+                            <option value="">-- Bitte wählen --</option>
+                            <?php if (isset($spalten) && is_array($spalten)): ?>
+                                <?php foreach ($spalten as $spalte): ?>
+                                    <option value="<?= $spalte['id'] ?>"
+                                            <?= (isset($tasks['spaltenid']) && $tasks['spaltenid'] == $spalte['id']) ? 'selected' : '' ?>>
+                                        <?= $spalte['spalte']?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
                     </div>
                 </div>
 

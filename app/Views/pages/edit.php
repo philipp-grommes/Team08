@@ -26,8 +26,6 @@
                     </div>
                 </div>
 
-
-
                 <div class="form-group row">
                     <label for="PLZ" class="col-sm-2 col-form-label">E-Mail:</label>
                     <div class="col-sm-10">

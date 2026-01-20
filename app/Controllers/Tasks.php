@@ -23,11 +23,15 @@ class Tasks extends BaseController {
     }
 
     public function getEdit($id = 0, $todo = 0) {
-
+        $data['personen'] = $this->TasksModel->getData();
+        $data['taskarten'] = $this->TasksModel->getTaskarten();
+        $data['spalten'] = $this->TasksModel->getSpalten();
+        $data['boards'] = $this->TasksModel->getBoards();
         $data['todo'] = $todo;
         // Person bearbeiten oder löschen
         if($id > 0 && ($todo == 1 || $todo == 2 ))
             $data['tasks'] = $this->TasksModel->getTasks($id);
+            $data['personen'] = $this->TasksModel->getData();
 
         echo view( 'templates/head');
         echo view( 'templates/navbar');

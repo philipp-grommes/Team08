@@ -34,13 +34,13 @@ class TasksModel extends Model{
                 'spaltenid' => $_POST['spaltenid'],
                 'erinnerungsdatum' => $_POST['erinnerungsdatum'],
                 'erinnerung' => (int)$_POST['erinnerung'],
-                'notizen' => $_POST['notizen'] ?? ''));
+                'notizen' => $_POST['notizen'] ?? '',
+                'erstellungsdatum' => date('Y-m-d')
+                ));
 
             return redirect()->to(base_url('tasks/'));
         }
-
         return  redirect()->to(base_url('tasks/edit/'));
-
     }
 
     public function updateTask(): void
@@ -62,6 +62,18 @@ class TasksModel extends Model{
         $this->tasks->where('tasks.id', $_POST['id']);
         $this->tasks->delete();
     }
+
+    public function getTaskarten(): array{
+        return $this->db->table('taskarten')->select('*')->get()->getResultArray();
+    }
+
+    public function getSpalten(): array{
+        return $this->db->table('spalten')->select('*')->get()->getResultArray();
+    }
+    public function getBoards(): array{
+        return $this->db->table('boards')->select('*')->get()->getResultArray();
+    }
+
 
 
 
