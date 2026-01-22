@@ -37,7 +37,6 @@ class Validation extends BaseConfig
         'spaltenid' => ['required' => 'Bitte geben Sie eine Spalte an.'],
     ];
 
-
     /**
      * Stores the classes that contain the
      * rules that are available.

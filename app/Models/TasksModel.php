@@ -57,10 +57,10 @@ class TasksModel extends Model{
             'notizen' => $_POST['notizen'] ?? ''));
     }
 
-    public function deleteTask(): void
+    public function deleteTask($id)
     {
         $this->tasks = $this->db->table('tasks');
-        $this->tasks->where('tasks.id', $_POST['id']);
+        $this->tasks->where('tasks.id', $id);
         $this->tasks->delete();
     }
 

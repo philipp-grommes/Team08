@@ -7,12 +7,18 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav">
-        <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url('tasks') ?>">Tasks</a>
-        <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url() ?>">Boards</a>
-        <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url('spalten') ?>">Spalten</a>
-        <a class=" navbar-link navbar-items text-decoration-none" href="<?= base_url('personen') ?>">Personen</a>
+            <div class="navbar-nav w-100">
+                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('tasks') ?>">Tasks</a>
+                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url() ?>">Boards</a>
+                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('spalten') ?>">Spalten</a>
+                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('personen') ?>">Personen</a>
+
+                <a class="nav-link navbar-items text-white text-decoration-none ms-auto" href="<?= base_url('login/logout') ?>">
+                    <i class="fas fa-sign-out-alt"></i> LogOut
+                </a>
             </div>
+        </div>
     </div>
 </nav>

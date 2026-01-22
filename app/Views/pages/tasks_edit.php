@@ -16,7 +16,7 @@
             <form action="<?= base_url('tasks/submit') ?>" method="post">
 
                 <div class="form-group row mb-3">
-                    <label for="tasks" class="col-sm-2 col-form-label">Task:</label>
+                    <label for="tasks" class="col-sm-2 col-form-label">Aufgabe:</label>
                     <div class="col-sm-10">
                         <input type="hidden" id="id" name="id" value="<?= isset($tasks['id']) ? ($tasks['id']) : '' ?>">
                         <input type="text"
@@ -39,19 +39,19 @@
                                 <?php foreach ($taskarten as $taskart): ?>
                                     <option value="<?= $taskart['id'] ?>"
                                             <?= (isset($tasks['taskartenid']) && $tasks['taskartenid'] == $taskart['id']) ? 'selected' : '' ?>>
-                                        <?= esc($taskart['taskart']) ?>
+                                        <?= ($taskart['taskart']) ?>
                                     </option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
                         <?php if (isset($error['taskartenid'])) : ?>
-                            <div class="invalid-feedback"><?= esc($error['taskartenid']) ?></div>
+                            <div class="invalid-feedback"><?= ($error['taskartenid']) ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
 
                 <div class="form-group row mb-3">
-                    <label for="personenid" class="col-sm-2 col-form-label">Person:</label>
+                    <label for="personenid" class="col-sm-2 col-form-label">Zugewiesene Person:</label>
                     <div class="col-sm-10">
                         <select class="form-control <?= isset($error['personenid']) ? 'is-invalid' : '' ?>"
                                 id="personenid" name="personenid" <?= $disabled ?>>
@@ -60,13 +60,13 @@
                                 <?php foreach ($personen as $person): ?>
                                     <option value="<?= $person['id'] ?>"
                                             <?= (isset($tasks['personenid']) && $tasks['personenid'] == $person['id']) ? 'selected' : '' ?>>
-                                        <?= esc($person['vorname'] . ' ' . $person['name']) ?>
+                                        <?= ($person['vorname'] . ' ' . $person['name']) ?>
                                     </option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
                         <?php if (isset($error['personenid'])) : ?>
-                            <div class="invalid-feedback"><?= esc($error['personenid']) ?></div>
+                            <div class="invalid-feedback"><?= ($error['personenid']) ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -81,26 +81,13 @@
                                 <?php foreach ($spalten as $spalte): ?>
                                     <option value="<?= $spalte['id'] ?>"
                                             <?= (isset($tasks['spaltenid']) && $tasks['spaltenid'] == $spalte['id']) ? 'selected' : '' ?>>
-                                        <?= esc($spalte['spalte']) ?>
+                                        <?=($spalte['spalte']) ?>
                                     </option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
                         <?php if (isset($error['spaltenid'])) : ?>
-                            <div class="invalid-feedback"><?= esc($error['spaltenid']) ?></div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
-                <div class="form-group row mb-3">
-                    <label for="erinnerungsdatum" class="col-sm-2 col-form-label">Erinnerungsdatum:</label>
-                    <div class="col-sm-10">
-                        <input type="datetime-local"
-                               class="form-control <?= isset($error['erinnerungsdatum']) ? 'is-invalid' : '' ?>"
-                               id="erinnerungsdatum" name="erinnerungsdatum"
-                               value="<?= isset($tasks['erinnerungsdatum']) ? esc(str_replace(' ', 'T', substr($tasks['erinnerungsdatum'], 0, 16))) : '' ?>" <?= $lock ?> >
-                        <?php if (isset($error['erinnerungsdatum'])) : ?>
-                            <div class="invalid-feedback"><?= esc($error['erinnerungsdatum']) ?></div>
+                            <div class="invalid-feedback"><?=($error['spaltenid']) ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -112,6 +99,21 @@
                         <input type="checkbox" class="form-check-input m-0" id="erinnerung" name="erinnerung" value="1" <?= !empty($tasks['erinnerung']) ? 'checked' : '' ?> <?= $disabled ?> >
                     </div>
                 </div>
+
+                <div class="form-group row mb-3">
+                    <label for="erinnerungsdatum" class="col-sm-2 col-form-label">Erinnerungsdatum:</label>
+                    <div class="col-sm-10">
+                        <input type="datetime-local"
+                               class="form-control <?= isset($error['erinnerungsdatum']) ? 'is-invalid' : '' ?>"
+                               id="erinnerungsdatum" name="erinnerungsdatum"
+                               value="<?= isset($tasks['erinnerungsdatum']) ? (str_replace(' ', 'T', substr($tasks['erinnerungsdatum'], 0, 16))) : '' ?>" <?= $lock ?> >
+                        <?php if (isset($error['erinnerungsdatum'])) : ?>
+                            <div class="invalid-feedback"><?= esc($error['erinnerungsdatum']) ?></div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+
 
                 <div class="form-group row mb-3">
                     <label for="notizen" class="col-sm-2 col-form-label">Notiz:</label>

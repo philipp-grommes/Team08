@@ -22,18 +22,20 @@ class PersonenModel extends Model {
             return $result->getResultArray();
     }
 
-    public function createPerson()
+    public function createPerson($person)
     {
-        if (!empty($_POST['vorname']) && !empty($_POST['name']) && !empty($_POST['email'])) {
-            $this->personen = $this->db->table('personen');
-            $this->personen->insert(array('vorname' => $_POST['vorname'],
-                'name' => $_POST['name'],
-                'email' => $_POST['email']));
 
-            return redirect()->to(base_url('persons/index_edit'));
+
+
+        if (!empty($person['vorname']) && !empty($person['name']) && !empty($person['email']) && !empty($person['passwort'])) {
+            $this->personen = $this->db->table('personen');
+            $this->personen->insert(array('vorname' => $person['vorname'],
+                'name' => $person['name'],
+                'email' => $person['email'],
+                'passwort' => $person['passwort']));
        }
 
-         return  redirect()->to(base_url('persons/ced_edit/'));
+        else {echo 'Es ist etwas schiefgelaufen';}
 
     }
 

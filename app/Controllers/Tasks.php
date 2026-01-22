@@ -76,4 +76,9 @@ class Tasks extends BaseController {
             }
             return redirect()->to(base_url('tasks/'));
         }
+
+        public function getDelete($id = 0) {
+        $this->TasksModel->deleteTask($id);
+            return redirect()->to(base_url('tasks/'));
+        }
 }

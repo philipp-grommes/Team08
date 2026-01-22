@@ -14,7 +14,7 @@
 
 .navbar-items{
     margin-left: 20px;
-    color: white;
+    color: white !important;
 }
 
 @media (max-width: 991px) {

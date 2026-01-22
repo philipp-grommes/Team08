@@ -34,6 +34,7 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth' => \App\Filters\AuthFilter::class
     ];
 
     /**
@@ -72,13 +73,14 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
+            'auth' => [ // Authentifizierungsfilter wird aufgerufen und schaut ob die Session bool True ist
+                'except' => [ // filter wird ausgesetzt, bei URls die 'login' oder 'login...' beinhalten
+                    'login',
+                    'login/*',
+                ]
+            ],
         ],
         'after' => [
-            // 'honeypot',
-            // 'secureheaders',
         ],
     ];
 
