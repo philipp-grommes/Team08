@@ -24,6 +24,14 @@ class Validation extends BaseConfig
 
     ];
 
+    public $boardsBearbeiten = [
+        'board' => 'required',
+    ];
+
+    public $boardsBearbeiten_errors = [
+        'board' => ['required' => 'Bitte geben Sie einen Boardnamen an.'],
+    ];
+
     public $tasksBearbeiten = [
     'tasks' => 'required',
     'taskartenid' => 'required',

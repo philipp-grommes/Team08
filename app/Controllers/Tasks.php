@@ -38,7 +38,7 @@ class Tasks extends BaseController {
 
     }
 
-    public function postSubmit() {
+    public function postSpeichern() {
             $validation = \Config\Services::validation();
             if (isset($_POST['btnSpeichern'])) {
 

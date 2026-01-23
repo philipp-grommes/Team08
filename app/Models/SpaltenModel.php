@@ -4,13 +4,12 @@ use CodeIgniter\Model;
 
 class SpaltenModel extends Model{
 
-    public function getSpalten($spalten_id = NULL): array {
+    public function getSpalten($spalten_id = NULL): ?array {
         if ($spalten_id != NULL)
             return $this->db->table('spalten')
                 ->select('spalten.*, boards.board')
                 ->join('boards', 'boards.id = spalten.boardsid')
                 ->where('spalten.id', $spalten_id)
-                ->orderBy('spalten.id', 'ASC')
                 ->get()
                 ->getRowArray();
         else
@@ -43,11 +42,21 @@ class SpaltenModel extends Model{
                                         'sortid' => $_POST['sortid'],
                                         'spaltenbeschreibung' => $_POST['spaltenbeschreibung']));
     }
-    public function deleteTask(): void
+    public function deleteSpalte(): void
     {
-        $this->spalten = $this->db->table('spalten');
-        $this->spalten->where('spalten.id', $_POST['id']);
-        $this->spalten->delete();
+        $this->db->transStart();
+
+        $this->db->table('tasks')
+            ->select('id')
+            ->where('spaltenid', $_POST['id'])
+            ->delete();
+
+        $this->db->table('spalten')
+            ->where('id', $_POST['id'])
+            ->delete();
+
+        $this->db->transComplete();
+
     }
     public function getBoards(): array{
         return $this->db->table('boards')->select('*')->get()->getResultArray();

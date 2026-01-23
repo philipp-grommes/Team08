@@ -10,7 +10,7 @@ class Home extends BaseController
     {
        echo view('templates/head');
        echo view('templates/navbar');
-       echo view('startseite');
+       echo view('pages/taskboard');
        echo view('templates/footer');
     }
 }

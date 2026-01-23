@@ -4,12 +4,11 @@ use CodeIgniter\Model;
 
 class TasksModel extends Model{
 
-    public function getTasks($tasks_id = NULL): array {
+    public function getTasks($tasks_id = NULL): ?array {
         if ($tasks_id != NULL)
             return $this->db->table('tasks')
                 ->where('id', $tasks_id)
                 ->select('*')
-                ->orderBy('tasks', 'ASC')
                 ->get()
                 ->getRowArray();
         else

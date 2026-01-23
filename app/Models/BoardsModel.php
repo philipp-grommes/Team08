@@ -8,7 +8,6 @@ class BoardsModel extends Model{
             return $this->db->table('boards')
                 ->where('id', $board_id)
                 ->select('*')
-                ->orderBy('board', 'ASC')
                 ->get()
                 ->getRowArray();
         else
@@ -29,7 +28,7 @@ class BoardsModel extends Model{
             $this->boards = $this->db->table('boards');
             $this->boards->insert(array('board' => $_POST['board']));
 
-            return redirect()->to(base_url('boards/'));
+            return redirect()->to(base_url('boards'));
         }
 
         return  redirect()->to(base_url('boards/edit/'));
@@ -45,9 +44,30 @@ class BoardsModel extends Model{
 
     public function deleteBoard(): void
     {
-        $this->boards = $this->db->table('boards');
-        $this->boards->where('boards.id', $_POST['id']);
-        $this->boards->delete();
+        $this->db->transStart();
+
+        $this->spalten = $this->db->table('spalten')
+            ->select('id')
+            ->where('boardsid', $_POST['id'])
+            ->get()
+            ->getResultArray();
+
+        foreach ($this->spalten as $spalte) {
+            $this->tasks = $this->db->table('tasks')
+                ->where('spaltenid', $spalte['id'])
+                ->delete();
+        }
+
+        $this->db->table('spalten')
+            ->where('boardsid', $_POST['id'])
+            ->delete();
+
+        $this->db->table('boards')
+            ->where('id', $_POST['id'])
+            ->delete();
+
+        $this->db->transComplete();
+
     }
 
 }

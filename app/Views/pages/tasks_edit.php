@@ -13,7 +13,7 @@
             $error = $error ?? [];
             ?>
 
-            <form action="<?= base_url('tasks/submit') ?>" method="post">
+            <form action="<?= base_url('tasks/speichern') ?>" method="post">
 
                 <div class="form-group row mb-3">
                     <label for="tasks" class="col-sm-2 col-form-label">Aufgabe:</label>

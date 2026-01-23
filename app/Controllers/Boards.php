@@ -2,43 +2,43 @@
 
 namespace App\Controllers;
 
-use App\Models\SpaltenModel;
 
-class Spalten extends BaseController
+use App\Models\BoardsModel;
+
+class Boards extends BaseController
 {
-    protected $spaltenModel;
+    protected $boardsModel;
 
     public function __construct()
     {
-        $this->spaltenModel = new SpaltenModel();
+        $this->boardsModel = new BoardsModel();
     }
 
     public function getIndex(): void
     {
-        $data['spalten'] = $this->spaltenModel->getSpalten();
+        $data['boards'] = $this->boardsModel->getBoards();
 
         echo view('templates/head');
         echo view('templates/navbar');
-        echo view('pages/spalten', $data);
+        echo view('pages/boards', $data);
         echo view('templates/footer');
     }
 
     public function getEdit($id = 0, $todo = 0)
     {
         $data['todo'] = $todo;
-        $data['boards'] = $this->spaltenModel->getBoards();
         $data['validation'] = \Config\Services::validation();
 
         // Daten aus Model laden, wenn ID vorhanden
         if ($id > 0 && ($todo == 1 || $todo == 2)) {
-            $data['spalten'] = $this->spaltenModel->getSpalten($id);
+            $data['boards'] = $this->boardsModel->getBoards($id);
         } else {
-            $data['spalten'] = []; // Leeres Array für "Erstellen"
+            $data['boards'] = []; // Leeres Array für "Erstellen"
         }
 
         echo view('templates/head');
         echo view('templates/navbar');
-        echo view('pages/spalten_edit', $data);
+        echo view('pages/boards_edit', $data);
         echo view('templates/footer');
     }
 
@@ -47,33 +47,34 @@ class Spalten extends BaseController
         $validation = \Config\Services::validation();
 
         if (isset($_POST['btnSpeichern'])) {
-            if ($validation->run($_POST, 'spaltenBearbeiten')) {
+            if ($validation->run($_POST, 'boardsBearbeiten')) {
                 if ($this->request->getPost('id') != '') {
-                    $this->spaltenModel->updateSpalte();
+                    $this->boardsModel->updateBoard();
                 } else {
-                    $this->spaltenModel->createSpalte();
+                    $this->boardsModel->createBoard();
+                    return redirect()->to(base_url('spalten/edit/0/0/'));
                 }
 
             } else {
                 $id = $this->request->getPost('id') ?: 0;
                 $todo = ($id > 0) ? 1 : 0;
                 $data['todo'] = $todo;
-                $data['boards'] = $this->spaltenModel->getBoards();
-                $data['spalten'] = $_POST;
+                $data['boards'] = $_POST;
                 $data['error'] = $validation->getErrors();
                 $data['validation'] = $validation;
 
                 echo view('templates/head');
                 echo view('templates/navbar');
-                echo view('pages/spalten_edit', $data);
+                echo view('pages/boards_edit', $data);
                 echo view('templates/footer');
                 return;
             }
 
         } elseif (isset($_POST['btnLoeschen'])) {
-            $this->spaltenModel->deleteSpalte();
+            $this->boardsModel->deleteBoard();
         }
 
-        return redirect()->to(base_url('spalten'));
+        return redirect()->to(base_url('boards'));
     }
 }
+
