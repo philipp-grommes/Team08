@@ -4,7 +4,7 @@
             <div class="mb-2">
                 <div class="card-header d-flex justify-content-between align-items-center mb-4">
                     <h1 class="fs-5 mb-0">Personen</h1>
-                    <a href="<?= base_url('personen/personenerstellen') ?>">
+                    <a href="<?= base_url('personen/personen_edit') ?>">
                         <button class="mt-2 mb-2 btn btn-sm btn-primary" type="button">
                             + Person erstellen
                         </button>

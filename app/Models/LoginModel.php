@@ -9,7 +9,7 @@ class LoginModel extends Model
 {
     public function login($email) {
             return $this->db->table('personen')
-                ->select('email, passwort, vorname, name') // Felder als ein String
+                ->select('email, passwort, vorname, name')
                 ->where('email', $email)
                 ->get()->getRowArray();
         }

@@ -20,7 +20,7 @@ class Personen extends BaseController
         echo view('templates/footer');
     }
 
-    public function getPersonenerstellen(): void{
+    public function getPersonen_edit(): void{
 
         echo view('templates/head');
         echo view('templates/navbar');
