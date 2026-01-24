@@ -13,7 +13,7 @@ class BoardsModel extends Model{
         else
             return $this->db->table('boards')
                 ->select('*')
-                ->orderBy('board', 'ASC')
+                ->orderBy('id', 'ASC')
                 ->get()
                 ->getResultArray();
 

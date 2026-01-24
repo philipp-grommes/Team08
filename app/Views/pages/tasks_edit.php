@@ -99,6 +99,7 @@
                         <input type="checkbox" class="form-check-input m-0" id="erinnerung" name="erinnerung" value="1" <?= !empty($tasks['erinnerung']) ? 'checked' : '' ?> <?= $disabled ?> >
                     </div>
                 </div>
+                <input type="hidden" name="board_id" value="<?= htmlspecialchars($currentBoardId ?? '1') ?>">
 
                 <div class="form-group row mb-3">
                     <label for="erinnerungsdatum" class="col-sm-2 col-form-label">Erinnerungsdatum:</label>

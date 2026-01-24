@@ -70,16 +70,32 @@ class TasksModel extends Model{
     public function getSpalten(): array{
         return $this->db->table('spalten')->select('*')->get()->getResultArray();
     }
-    public function getBoards(): array{
-        return $this->db->table('boards')->select('*')->get()->getResultArray();
-    }
+    protected $table = 'tasks';
 
+    public function getBoards($board_id = NULL): array
+    {
+        $builder = $this->db->table('boards');
+        $builder->select('
+            boards.id as board_id, boards.board as board_name,
+            spalten.id as spalte_id, spalten.spalte as spalte_name, spalten.spaltenbeschreibung,
+            tasks.id as task_id, tasks.tasks as task_titel, tasks.notizen, tasks.erstellungsdatum,
+            personen.vorname, personen.name as nachname
+        ')
+            ->join('spalten', 'spalten.boardsid = boards.id', 'left')
+            ->join('tasks', 'tasks.spaltenid = spalten.id', 'left')
+            ->join('personen', 'personen.id = tasks.personenid', 'left');
+
+        if ($board_id !== NULL) {
+            $builder->where('boards.id', $board_id);
+        }
+
+        return $builder->orderBy('spalten.sortid', 'ASC')->get()->getResultArray();
+    }
+    public function getallBoards(string $table): array {
+        return $this->db->table($table)->get()->getResultArray();
+    }
     public function getPersonen(): array{
         return $this->db->table('personen')->select('*')->get()->getResultArray();
     }
-
-
-
-
 
 }
