@@ -13,7 +13,7 @@ class TasksModel extends Model{
                 ->getRowArray();
         else
             return $this->db->table('tasks')
-                ->select('tasks.*, personen.vorname, personen.name, taskarten.taskartenicon')
+                ->select('tasks.*, personen.vorname, personen.name, taskarten.taskartenicon, taskarten.taskart as taskartenname')
                 ->join('personen', 'personen.id = tasks.personenid')
                 ->join('taskarten', 'taskarten.id = tasks.taskartenid', 'left')
                 ->orderBy('tasks', 'ASC')
@@ -80,11 +80,12 @@ class TasksModel extends Model{
             boards.id as board_id, boards.board as board_name,
             spalten.id as spalte_id, spalten.spalte as spalte_name, spalten.spaltenbeschreibung,
             tasks.id as task_id, tasks.tasks as task_titel, tasks.notizen, tasks.erstellungsdatum, tasks.erinnerungsdatum,
-            personen.vorname, personen.name as nachname
+            personen.vorname, personen.name as nachname, taskarten.taskartenicon, taskarten.taskart as taskartenname
         ')
             ->join('spalten', 'spalten.boardsid = boards.id', 'left')
             ->join('tasks', 'tasks.spaltenid = spalten.id', 'left')
-            ->join('personen', 'personen.id = tasks.personenid', 'left');
+            ->join('personen', 'personen.id = tasks.personenid', 'left')
+            ->join('taskarten', 'taskarten.id = tasks.taskartenid', 'left');
 
         if ($board_id !== NULL) {
             $builder->where('boards.id', $board_id);

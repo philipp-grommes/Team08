@@ -34,20 +34,29 @@
                 <div class="form-group row mb-3">
                     <label for="taskartenid" class="col-sm-2 col-form-label">Taskart:</label>
                     <div class="col-sm-10">
-                        <select class="form-control <?= isset($error['taskartenid']) ? 'is-invalid' : '' ?>"
-                                id="taskartenid" name="taskartenid" <?= $disabled ?>>
-                            <option value="">-- Bitte wählen --</option>
+
+                        <!-- Hidden Input -->
+                        <input type="hidden" id="taskartenid" name="taskartenid"
+                               value="<?= isset($tasks['taskartenid']) ? $tasks['taskartenid'] : '' ?>">
+
+                        <!-- Button-Gruppe -->
+                        <div class="btn-group" role="group" aria-label="Taskarten">
                             <?php if (isset($taskarten) && is_array($taskarten)): ?>
                                 <?php foreach ($taskarten as $taskart): ?>
-                                    <option value="<?= $taskart['id'] ?>"
-                                            <?= (isset($tasks['taskartenid']) && $tasks['taskartenid'] == $taskart['id']) ? 'selected' : '' ?>>
-                                        <?= ($taskart['taskartenicon']) ?>
-                                    </option>
+                                    <button type="button"
+                                            class="btn btn-outline-primary taskart-btn"
+                                            data-id="<?= $taskart['id'] ?>"
+                                            data-icon="<?= $taskart['taskartenicon'] ?>"
+                                            data-name="<?= $taskart['taskart'] ?>">
+                                        <i class="fa <?= $taskart['taskartenicon'] ?> me-1"></i>
+                                        <?= $taskart['taskart'] ?>
+                                    </button>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                        </select>
+                        </div>
+
                         <?php if (isset($error['taskartenid'])) : ?>
-                            <div class="invalid-feedback"><?= ($error['taskartenid']) ?></div>
+                            <div class="invalid-feedback d-block"><?= ($error['taskartenid']) ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -154,3 +163,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelectorAll('.taskart-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+
+            const id = this.dataset.id;
+
+            // Hidden Input setzen
+            document.getElementById('taskartenid').value = id;
+
+            // aktive Klasse setzen
+            document.querySelectorAll('.taskart-btn').forEach(function(b){
+                b.classList.remove('active');
+            });
+            this.classList.add('active');
+        });
+    });
+</script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const selectedId = document.getElementById('taskartenid').value;
+        if (selectedId) {
+            const selectedBtn = document.querySelector('.taskart-btn[data-id="' + selectedId + '"]');
+            if (selectedBtn) {
+                selectedBtn.classList.add('active');
+            }
+        }
+    });
+</script>

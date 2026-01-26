@@ -55,9 +55,12 @@
                                     <div class="card mb-3 shadow-sm border-0 rounded-3 task-card">
                                         <div class="card-header bg-white border-bottom-0 pt-3 pb-0 px-3">
                                             <div class="d-flex justify-content-between align-items-start">
-                                                <h6 class="fw-bold mb-0 text-dark lh-base">
-                                                    <?= ($item['task_titel'] ?? 'Kein Titel'); ?>
-                                                </h6>
+                                                <div class="d-flex align-items-center gap-4">
+                                                    <h6 class="fw-bold mb-0 text-dark lh-base">
+                                                        <?= ($item['task_titel'] ?? 'Kein Titel'); ?>
+                                                    </h6>
+                                                </div>
+
                                                 <a href="<?= base_url('/tasks/edit/'.($item['task_id'] ?? $item['id']).'/1/'.($currentBoardId ?? 0)) ?>"
                                                    class="text-primary p-1 hover-scale transition" title="Bearbeiten">
                                                     <i class="bi bi-pencil-square"></i>
@@ -84,6 +87,13 @@
                                             <div class="d-flex align-items-center mb-2 text-muted small">
                                                 <i class="bi bi-bell me-2 text-secondary" style="width: 18px;"></i>
                                                 <span><?= date('d.m.Y H:i', strtotime($item['erinnerungsdatum'])); ?> Uhr</span>
+
+                                                <span class="d-flex align-items-center ms-auto">
+                                                    <i class="fa <?= ($item['taskartenicon'] ?? 'fa-question-circle') ?> fs-5" style="color: darkblue"></i>
+                                                    <span class="ms-1 small">
+                                                        <?= ($item['taskartenname'] ?? '') ?>
+                                                    </span>
+                                                </span>
                                             </div>
 
 
