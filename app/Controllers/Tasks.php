@@ -70,7 +70,7 @@ class Tasks extends BaseController {
     public function getEdit($id = 0, $todo = 0, $boardsid = 0) {
         $data['personen'] = $this->TasksModel->getPersonen();
         $data['taskarten'] = $this->TasksModel->getTaskarten();
-        $data['spalten'] = $this->TasksModel->getSpalten();
+        $data['spalten'] = $this->TasksModel->getSpalten($boardsid);
         $data['allBoards'] = $this->TasksModel->getallBoards('boards');
         $data['todo'] = $todo;
         $data['currentBoardId'] = $boardsid;
@@ -89,7 +89,7 @@ class Tasks extends BaseController {
     {
         $validation = \Config\Services::validation();
 
-        $boardId = $this->request->getPost('board_id');
+        $boardId = $this->request->getPost('boardsid');
 
         if (isset($_POST['btnSpeichern'])) {
 

@@ -76,10 +76,16 @@
                                                 <span class="text-truncate-2"><?= ($item['notizen'] ?? '-'); ?></span>
                                             </div>
 
-                                            <div class="d-flex align-items-center mb-0 text-muted small">
+                                            <div class="d-flex align-items-center mb-2 text-muted small">
                                                 <i class="bi bi-calendar3 me-2 text-secondary" style="width: 18px;"></i>
                                                 <span><?= date('d.m.Y', strtotime($item['erstellungsdatum'])); ?></span>
                                             </div>
+
+                                            <div class="d-flex align-items-center mb-2 text-muted small">
+                                                <i class="bi bi-bell me-2 text-secondary" style="width: 18px;"></i>
+                                                <span><?= date('d.m.Y H:i', strtotime($item['erinnerungsdatum'])); ?> Uhr</span>
+                                            </div>
+
 
                                             <div class="mt-3 pt-2 border-top d-flex gap-2">
                                                 <a href="<?= base_url('/tasks/edit/'.($item['task_id'] ?? $item['id']).'/2/'.($currentBoardId ?? 0)) ?>"
@@ -106,7 +112,7 @@
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <div class="col-12 text-center py-5">
+            <div class="col-12 text-center py-4">
                 <div class="py-5 bg-white rounded-3 shadow-sm border">
                     <i class="bi bi-layout-three-columns display-4 text-muted mb-3 d-block"></i>
                     <h3 class="text-muted">Bitte wähle ein Board aus</h3>

@@ -6,11 +6,8 @@ use App\Models\TasksModel;
 
 class Home extends BaseController
 {
-    public function getIndex(): void
+    public function getIndex()
     {
-       echo view('templates/head');
-       echo view('templates/navbar');
-       echo view('pages/taskboard');
-       echo view('templates/footer');
+        return redirect()->to(base_url('tasks'));
     }
 }

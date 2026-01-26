@@ -29,6 +29,8 @@
                     </div>
                 </div>
 
+
+
                 <div class="form-group row mb-3">
                     <label for="taskartenid" class="col-sm-2 col-form-label">Taskart:</label>
                     <div class="col-sm-10">
@@ -39,7 +41,7 @@
                                 <?php foreach ($taskarten as $taskart): ?>
                                     <option value="<?= $taskart['id'] ?>"
                                             <?= (isset($tasks['taskartenid']) && $tasks['taskartenid'] == $taskart['id']) ? 'selected' : '' ?>>
-                                        <?= ($taskart['taskart']) ?>
+                                        <?= ($taskart['taskartenicon']) ?>
                                     </option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
@@ -99,7 +101,8 @@
                         <input type="checkbox" class="form-check-input m-0" id="erinnerung" name="erinnerung" value="1" <?= !empty($tasks['erinnerung']) ? 'checked' : '' ?> <?= $disabled ?> >
                     </div>
                 </div>
-                <input type="hidden" name="board_id" value="<?= htmlspecialchars($currentBoardId ?? '1') ?>">
+
+                <input type="hidden" name="boardsid" value="<?= htmlspecialchars($currentBoardId ?? '1') ?>">
 
                 <div class="form-group row mb-3">
                     <label for="erinnerungsdatum" class="col-sm-2 col-form-label">Erinnerungsdatum:</label>

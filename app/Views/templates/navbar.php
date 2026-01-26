@@ -14,9 +14,8 @@
                 <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('boards') ?>">Boards</a>
                 <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('spalten') ?>">Spalten</a>
                 <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('personen') ?>">Personen</a>
-
                 <a class="nav-link navbar-items text-white text-decoration-none ms-auto" href="<?= base_url('login/logout') ?>">
-                    <i class="fas fa-sign-out-alt"></i> LogOut
+                    <i class="fas fa-sign-out-alt"></i> Ausloggen
                 </a>
             </div>
         </div>

@@ -16,7 +16,7 @@ class SpaltenModel extends Model{
             return $this->db->table('spalten')
                 ->select('spalten.*, boards.board')
                 ->join('boards', 'boards.id = spalten.boardsid')
-                ->orderBy('spalten.id', 'ASC')
+                ->orderBy('boards.board', 'ASC')
                 ->get()
                 ->getResultArray();
     }
