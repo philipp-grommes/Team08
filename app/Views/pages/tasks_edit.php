@@ -154,7 +154,7 @@
                             <button type="submit" class="btn btn-danger" name="btnLoeschen"><i class="fas fa-trash"></i> Löschen</button>
                         <?php endif ?>
 
-                        <a href="<?= base_url('tasks') ?>" class="btn btn-primary">
+                        <a href="<?= base_url('tasks/tasksfromboards/'.($currentBoardId ?? '0')) ?>" class="btn btn-primary">
                             <i class="far fa-window-close"></i> Abbrechen
                         </a>
                     </div>

@@ -74,8 +74,8 @@
                                                 <span><?= (($item['vorname'] ?? '') . ' ' . ($item['nachname'] ?? '')); ?></span>
                                             </div>
 
-                                            <div class="d-flex align-items-center mb-2 text-muted small">
-                                                <i class="bi bi-card-text me-2  text-secondary" style="width: 18px;"></i>
+                                            <div class="d-flex align-items-start mb-2 text-muted small">
+                                                <i class="bi bi-card-text me-2 text-secondary" style="width: 18px;"></i>
                                                 <span class="text-truncate-2"><?= ($item['notizen'] ?? '-'); ?></span>
                                             </div>
 
@@ -87,12 +87,11 @@
                                             <div class="d-flex align-items-center mb-2 text-muted small">
                                                 <i class="bi bi-bell me-2 text-secondary" style="width: 18px;"></i>
                                                 <span><?= date('d.m.Y H:i', strtotime($item['erinnerungsdatum'])); ?> Uhr</span>
-
                                                 <span class="d-flex align-items-center ms-auto">
-                                                    <i class="fa <?= ($item['taskartenicon'] ?? 'fa-question-circle') ?> fs-5" style="color: darkblue"></i>
-                                                    <span class="ms-1 small">
-                                                        <?= ($item['taskartenname'] ?? '') ?>
-                                                    </span>
+                                                    <i class="bi <?= ($item['taskartenicon'] ?? 'bi-question-circle') ?> fs-5" style="color: darkblue"></i>
+                                                        <span class="ms-1 small">
+                                                            <?= ($item['taskartenname'] ?? '') ?>
+                                                        </span>
                                                 </span>
                                             </div>
 

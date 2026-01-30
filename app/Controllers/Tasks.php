@@ -14,9 +14,9 @@ class Tasks extends BaseController {
     // In Tasks.php
 
     public function getIndex(): void {
-        // Standardwerte setzen, damit die View Variablen zum Arbeiten hat
+
         $data['activeBoardName'] = 'Alle Boards';
-        $data['spalten'] = []; // Leeres Array, damit foreach nicht meckert
+        $data['spalten'] = [];
         $data['tasks'] = $this->TasksModel->getTasks();
         $data['allBoards'] = $this->TasksModel->getallBoards('boards');
 
@@ -40,7 +40,6 @@ class Tasks extends BaseController {
 
             if ($viewData['activeBoardName'] === 'Kein Board gewählt') {
                 $viewData['activeBoardName'] = $row['board_name'];
-                $viewData['currentBoardId'] = $row['board_id'];
             }
 
             $sId = $row['spalte_id'];

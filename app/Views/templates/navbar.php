@@ -9,14 +9,20 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav w-100">
-                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('tasks') ?>">Tasks</a>
-                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('boards') ?>">Boards</a>
-                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('spalten') ?>">Spalten</a>
-                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('personen') ?>">Personen</a>
-                <a class="nav-link navbar-items text-white text-decoration-none ms-auto" href="<?= base_url('login/logout') ?>">
-                    <i class="fas fa-sign-out-alt"></i> Ausloggen
-                </a>
+            <div class="navbar-nav w-100 align-items-lg-center"> <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('tasks') ?>">Tasks</a>
+                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('boards') ?>" id="navBoards">Boards</a>
+                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('spalten') ?>" id="navSpalten">Spalten</a>
+                <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('personen') ?>" id="navPersonen">Personen</a>
+
+                <div class="ms-auto d-flex align-items-center">
+                    <div class="poke-circle me-2">
+                        <img id="nav-poke-img" src="" alt="" style="display:none;">
+                    </div>
+
+                    <a class="nav-link navbar-items text-white text-decoration-none" href="<?= base_url('login/logout') ?>">
+                        <i class="fas fa-sign-out-alt"></i> Ausloggen
+                    </a>
+                </div>
             </div>
         </div>
     </div>
