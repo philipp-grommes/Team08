@@ -6,13 +6,12 @@ use App\Models\TasksModel;
 
 class Tasks extends BaseController {
 
-    public function __construct() {
-
+//Konstruktor für das TasksModel
+    public function __construct(){
         $this->TasksModel = new TasksModel();
-
     }
-    // In Tasks.php
 
+//Index-Methode für den Aufurf der Seite
     public function getIndex(): void {
 
         $data['activeBoardName'] = 'Alle Boards';
@@ -26,6 +25,7 @@ class Tasks extends BaseController {
         echo view('templates/footer');
     }
 
+//Aufbau der einzelnen TaskBoards
     public function getTasksfromboards($id = 0): void {
 
         $rawRows = $this->TasksModel->getBoards($id);
@@ -64,9 +64,9 @@ class Tasks extends BaseController {
         echo view('templates/footer');
     }
 
-
-
+//Editfunktion für die Tasks
     public function getEdit($id = 0, $todo = 0, $boardsid = 0) {
+
         $data['personen'] = $this->TasksModel->getPersonen();
         $data['taskarten'] = $this->TasksModel->getTaskarten();
         $data['spalten'] = $this->TasksModel->getSpalten($boardsid);
@@ -84,6 +84,7 @@ class Tasks extends BaseController {
         echo view('templates/footer');
     }
 
+//Speicherfunktion für die Tasks
     public function postSpeichern()
     {
         $validation = \Config\Services::validation();
@@ -103,9 +104,8 @@ class Tasks extends BaseController {
                 $data['currentBoardId'] = $boardId;
 
                 $id = $this->request->getPost('id') ?: 0;
-                $todo = ($id > 0) ? 1 : 0;
 
-                $data['todo'] = $todo;
+                $data['todo'] = ($id > 0) ? 1 : 0;
                 $data['tasks'] = $_POST;
                 $data['error'] = $validation->getErrors();
                 $data['personen'] = $this->TasksModel->getPersonen();
@@ -123,7 +123,15 @@ class Tasks extends BaseController {
             $id = $this->request->getPost('id');
             $this->TasksModel->deleteTask($id);
         }
-
         return redirect()->to(base_url('tasks/tasksfromboards/' . $boardId));
+    }
+
+    public function postUpdatecolumn(){
+        $taskId   = $this->request->getPost('task_id');
+        $columnId = $this->request->getPost('column_id');
+
+        $success = $this->TasksModel->updateTaskColumn($taskId, $columnId);
+
+        return $this->response->setJSON(['success' => $success]);
     }
 }

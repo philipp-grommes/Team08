@@ -3,7 +3,10 @@
 use CodeIgniter\Model;
 
 class BoardsModel extends Model{
+
+// Funktion um alle oder ein speizifisches Board zu bekommen
     public function getBoards($board_id = NULL): array {
+
         if ($board_id != NULL)
             return $this->db->table('boards')
                 ->where('id', $board_id)
@@ -16,14 +19,12 @@ class BoardsModel extends Model{
                 ->orderBy('id', 'ASC')
                 ->get()
                 ->getResultArray();
-
-
     }
 
-    public function createBoard()
-    {
-        if (!empty($_POST['board'])) {
+// Funktion um neue Boards anzulegen. Standardmäßig werden drei Spalten angelegt
+    public function createBoard() {
 
+        if (!empty($_POST['board'])) {
 
             $this->boards = $this->db->table('boards');
             $this->boards->insert(array('board' => $_POST['board']));
@@ -54,18 +55,19 @@ class BoardsModel extends Model{
             $this->db->table('spalten')->insertBatch($standard);
 
             return $boardID;
-
         }
         return NULL;
     }
 
-    public function updateBoard(): void
-    {
+//Funktion um den Boardsnamen zu ändern
+    public function updateBoard(): void{
+
         $this->boards = $this->db->table('boards');
         $this->boards->where('boards.id', $_POST['id']);
         $this->boards->update(array('board' => $_POST['board']));
     }
 
+//Funktion um ein Board zu löschen // Bitte die Logik noch auf die DB umlegen!!
     public function deleteBoard(): void
     {
         $this->db->transStart();

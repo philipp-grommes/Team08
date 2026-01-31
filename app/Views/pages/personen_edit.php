@@ -1,8 +1,13 @@
 <div class="container mt-4">
     <div class="card shadow-sm">
+
+<!-- Card Header mit Überschrift -->
+
         <div class="card-header bg-white">
             <h1 class="fs-4 mb-0">Neue Person anlegen</h1>
         </div>
+
+<!-- Card Body mit Formular -->
 
         <div class="card-body">
             <form action="<?= base_url('personen/store') ?>" method="post">
@@ -30,6 +35,8 @@
                 </div>
 
                 <hr>
+
+<!-- Buttons zum Speichern oder Abbrechen -->
 
                 <div class="d-flex justify-content-end gap-2">
                     <a href="<?= base_url('personen') ?>" class="btn btn-outline-secondary">Abbrechen</a>

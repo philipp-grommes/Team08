@@ -5,27 +5,27 @@ use function PHPUnit\Framework\isEmpty;
 
 class PersonenModel extends Model {
 
-
+//DB-Abfrage zum Erhalten einer oder aller Personen
     public function getPersonen($person_id = NULL) {
+
         $this->personen = $this->db->table('personen');
         $this->personen->select('*');
 
-        IF ($person_id != NULL)
+        if ($person_id != NULL)
             $this->personen->where('personen.id', $person_id);
 
         $this->personen->orderBy('id');
         $result = $this->personen->get();
 
-        if ($person_id != NULL)
+        if ($person_id != NULL) {
             return $result->getRowArray();
-        else
+        } else {
             return $result->getResultArray();
+          }
     }
 
-    public function createPerson($person)
-    {
-
-
+//DB-INsert zum Erstellem einer neuen Person
+    public function createPerson($person){
 
         if (!empty($person['vorname']) && !empty($person['name']) && !empty($person['email']) && !empty($person['passwort'])) {
             $this->personen = $this->db->table('personen');
@@ -33,14 +33,13 @@ class PersonenModel extends Model {
                 'name' => $person['name'],
                 'email' => $person['email'],
                 'passwort' => $person['passwort']));
-       }
-
-        else {echo 'Es ist etwas schiefgelaufen';}
-
+        } else {
+            echo 'Es ist etwas schiefgelaufen';
+        }
     }
 
-    public function updatePerson(): void
-    {
+//DB-Update um Änderungen an einer Person zu speichern
+    public function updatePerson(): void{
 
         $this->personen = $this->db->table('personen');
         $this->personen->where('personen.id', $_POST['id']);
@@ -49,8 +48,9 @@ class PersonenModel extends Model {
             'email' => $_POST['email']));
     }
 
-    public function deletePerson(): void
-    {
+    //DB-Delete um eine Person zu löschen
+    public function deletePerson(): void{
+
         $this->personen = $this->db->table('personen');
         $this->personen->where('personen.id', $_POST['id']);
         $this->personen->delete();

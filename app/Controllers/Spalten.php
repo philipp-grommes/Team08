@@ -4,17 +4,16 @@ namespace App\Controllers;
 
 use App\Models\SpaltenModel;
 
-class Spalten extends BaseController
-{
+class Spalten extends BaseController{
     protected $spaltenModel;
 
-    public function __construct()
-    {
+//Konstruktor für das SpaltenModel
+    public function __construct(){
         $this->spaltenModel = new SpaltenModel();
     }
 
-    public function getIndex(): void
-    {
+//Index-Methode bei Aufruf der Seite
+    public function getIndex(): void{
         $data['spalten'] = $this->spaltenModel->getSpalten();
 
         echo view('templates/head');
@@ -23,8 +22,8 @@ class Spalten extends BaseController
         echo view('templates/footer');
     }
 
-    public function getEdit($id = 0, $todo = 0)
-    {
+//Editfunktion für die Spalten
+    public function getEdit($id = 0, $todo = 0){
         $data['todo'] = $todo;
         $data['boards'] = $this->spaltenModel->getBoards();
         $data['validation'] = \Config\Services::validation();
@@ -42,8 +41,8 @@ class Spalten extends BaseController
         echo view('templates/footer');
     }
 
-    public function postSpeichern()
-    {
+//Speicherfunktion für neue Spalten
+    public function postSpeichern(){
         $validation = \Config\Services::validation();
 
         if (isset($_POST['btnSpeichern'])) {
@@ -53,7 +52,6 @@ class Spalten extends BaseController
                 } else {
                     $this->spaltenModel->createSpalte();
                 }
-
             } else {
                 $id = $this->request->getPost('id') ?: 0;
                 $todo = ($id > 0) ? 1 : 0;
@@ -69,11 +67,9 @@ class Spalten extends BaseController
                 echo view('templates/footer');
                 return;
             }
-
         } elseif (isset($_POST['btnLoeschen'])) {
             $this->spaltenModel->deleteSpalte();
         }
-
         return redirect()->to(base_url('spalten'));
     }
 }

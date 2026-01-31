@@ -9,13 +9,13 @@ class Boards extends BaseController
 {
     protected $boardsModel;
 
-    public function __construct()
-    {
+// Konstruktor für das BoardsModel
+    public function __construct(){
         $this->boardsModel = new BoardsModel();
     }
 
-    public function getIndex(): void
-    {
+// -Index Methode beim Aufbau der Seite
+    public function getIndex(): void{
         $data['boards'] = $this->boardsModel->getBoards();
 
         echo view('templates/head');
@@ -24,8 +24,8 @@ class Boards extends BaseController
         echo view('templates/footer');
     }
 
-    public function getEdit($id = 0, $todo = 0)
-    {
+// -Entscheidung über ToDo und entsprechende Weiterleitung
+    public function getEdit($id = 0, $todo = 0){
         $data['todo'] = $todo;
         $data['validation'] = \Config\Services::validation();
 
@@ -42,8 +42,8 @@ class Boards extends BaseController
         echo view('templates/footer');
     }
 
-    public function postSpeichern()
-    {
+//- Speicherung der Änderungen
+    public function postSpeichern(){
         $validation = \Config\Services::validation();
 
         if (isset($_POST['btnSpeichern'])) {

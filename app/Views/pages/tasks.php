@@ -34,91 +34,90 @@
 
     <div class="row flex-nowrap overflow-auto pb-4 custom-kanban-scroll" style="min-height: 75vh;">
         <?php if (!empty($spalten)): ?>
-            <?php foreach ($spalten as $spalte): ?>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-4" style="min-width: 320px;">
-                    <div class="card bg-light h-100 shadow-sm border-0 rounded-3">
-                        <div class="card-header border-bottom-0 bg-transparent pt-3 pb-2 px-3">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <h5 class="fw-bold mb-0 text-truncate" title="<?= ($spalte['name']) ?>">
-                                    <?= ($spalte['name']) ?>
-                                </h5>
-                                <span class="badge bg-secondary-soft text-dark rounded-pill small">
+            <?php foreach ($spalten as $sId => $spalte): ?> <div class="col-12 col-sm-6 col-md-4 col-lg-4" style="min-width: 320px;">
+                <div class="card bg-light h-100 shadow-sm border-0 rounded-3">
+                    <div class="card-header border-bottom-0 bg-transparent pt-3 pb-2 px-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="fw-bold mb-0 text-truncate" title="<?= ($spalte['name']) ?>">
+                                <?= ($spalte['name']) ?>
+                            </h5>
+                            <span class="badge bg-secondary-soft text-dark rounded-pill small">
                                     <?= count($spalte['tasks'] ?? []) ?>
                                 </span>
-                            </div>
-                            <small class="text-muted d-block text-truncate"><?= ($spalte['beschreibung'] ?? '') ?></small>
                         </div>
+                        <small class="text-muted d-block text-truncate"><?= ($spalte['beschreibung'] ?? '') ?></small>
+                    </div>
 
-                        <div class="card-body px-2 pt-0">
-                            <?php if (!empty($spalte['tasks'])): ?>
-                                <?php foreach ($spalte['tasks'] as $item): ?>
-                                    <div class="card mb-3 shadow-sm border-0 rounded-3 task-card">
-                                        <div class="card-header bg-white border-bottom-0 pt-3 pb-0 px-3">
-                                            <div class="d-flex justify-content-between align-items-start">
-                                                <div class="d-flex align-items-center gap-4">
-                                                    <h6 class="fw-bold mb-0 text-dark lh-base">
-                                                        <?= ($item['task_titel'] ?? 'Kein Titel'); ?>
-                                                    </h6>
-                                                </div>
+                    <div class="card-body px-2 pt-0 drag-container" data-column-id="<?= $sId ?>" style="min-height: 150px;">
+                        <?php if (!empty($spalte['tasks'])): ?>
+                            <?php foreach ($spalte['tasks'] as $item): ?>
 
-                                                <a href="<?= base_url('/tasks/edit/'.($item['task_id'] ?? $item['id']).'/1/'.($currentBoardId ?? 0)) ?>"
-                                                   class="text-primary p-1 hover-scale transition" title="Bearbeiten">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                </a>
+                                <div class="card mb-3 shadow-sm border-0 rounded-3 task-card" data-task-id="<?= $item['task_id'] ?>">
+                                    <div class="card-header bg-white border-bottom-0 pt-3 pb-0 px-3">
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div class="d-flex align-items-center gap-4">
+                                                <h6 class="fw-bold mb-0 text-dark lh-base">
+                                                    <?= ($item['task_titel'] ?? 'Kein Titel'); ?>
+                                                </h6>
                                             </div>
+
+                                            <a href="<?= base_url('/tasks/edit/'.($item['task_id']).'/1/'.($currentBoardId ?? 0)) ?>"
+                                               class="text-primary p-1 hover-scale transition" title="Bearbeiten">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body py-2 px-3">
+                                        <div class="d-flex align-items-center mb-2 text-muted small">
+                                            <i class="bi bi-person-circle me-2 text-secondary" style="width: 18px;"></i>
+                                            <span><?= (($item['vorname'] ?? '') . ' ' . ($item['nachname'] ?? '')); ?></span>
                                         </div>
 
-                                        <div class="card-body py-2 px-3">
-                                            <div class="d-flex align-items-center mb-2 text-muted small">
-                                                <i class="bi bi-person-circle me-2 text-secondary" style="width: 18px;"></i>
-                                                <span><?= (($item['vorname'] ?? '') . ' ' . ($item['nachname'] ?? '')); ?></span>
-                                            </div>
+                                        <div class="d-flex align-items-start mb-2 text-muted small">
+                                            <i class="bi bi-card-text me-2 text-secondary" style="width: 18px;"></i>
+                                            <span class="text-truncate-2"><?= ($item['notizen'] ?? '-'); ?></span>
+                                        </div>
 
-                                            <div class="d-flex align-items-start mb-2 text-muted small">
-                                                <i class="bi bi-card-text me-2 text-secondary" style="width: 18px;"></i>
-                                                <span class="text-truncate-2"><?= ($item['notizen'] ?? '-'); ?></span>
-                                            </div>
+                                        <div class="d-flex align-items-center mb-2 text-muted small">
+                                            <i class="bi bi-calendar3 me-2 text-secondary" style="width: 18px;"></i>
+                                            <span><?= date('d.m.Y', strtotime($item['erstellungsdatum'])); ?></span>
+                                        </div>
 
-                                            <div class="d-flex align-items-center mb-2 text-muted small">
-                                                <i class="bi bi-calendar3 me-2 text-secondary" style="width: 18px;"></i>
-                                                <span><?= date('d.m.Y', strtotime($item['erstellungsdatum'])); ?></span>
-                                            </div>
-
-                                            <div class="d-flex align-items-center mb-2 text-muted small">
-                                                <i class="bi bi-bell me-2 text-secondary" style="width: 18px;"></i>
-                                                <span><?= date('d.m.Y H:i', strtotime($item['erinnerungsdatum'])); ?> Uhr</span>
-                                                <span class="d-flex align-items-center ms-auto">
+                                        <div class="d-flex align-items-center mb-2 text-muted small">
+                                            <i class="bi bi-bell me-2 text-secondary" style="width: 18px;"></i>
+                                            <span><?= date('d.m.Y H:i', strtotime($item['erinnerungsdatum'])); ?> Uhr</span>
+                                            <span class="d-flex align-items-center ms-auto">
                                                     <i class="bi <?= ($item['taskartenicon'] ?? 'bi-question-circle') ?> fs-5" style="color: darkblue"></i>
                                                         <span class="ms-1 small">
                                                             <?= ($item['taskartenname'] ?? '') ?>
                                                         </span>
                                                 </span>
-                                            </div>
+                                        </div>
 
+                                        <div class="mt-3 pt-2 border-top d-flex gap-2">
+                                            <a href="<?= base_url('/tasks/edit/'.($item['task_id']).'/2/'.($currentBoardId ?? 0)) ?>"
+                                               class="btn btn-sm btn-outline-success flex-grow-1 py-1">
+                                                <i class="bi bi-check-lg"></i> <span class="d-none d-md-inline">Erledigt</span>
+                                            </a>
 
-                                            <div class="mt-3 pt-2 border-top d-flex gap-2">
-                                                <a href="<?= base_url('/tasks/edit/'.($item['task_id'] ?? $item['id']).'/2/'.($currentBoardId ?? 0)) ?>"
-                                                   class="btn btn-sm btn-outline-success flex-grow-1 py-1">
-                                                    <i class="bi bi-check-lg"></i> <span class="d-none d-md-inline">Erledigt</span>
-                                                </a>
-
-                                                <a href="<?= base_url('/tasks/edit/'.($item['task_id'] ?? $item['id']).'/2/'.($currentBoardId ?? 0)) ?>"
-                                                   class="btn btn-sm btn-outline-danger flex-grow-1 py-1">
-                                                    <i class="bi bi-trash"></i> <span class="d-none d-md-inline">Löschen</span>
-                                                </a>
-                                            </div>
+                                            <a href="<?= base_url('/tasks/edit/'.($item['task_id']).'/2/'.($currentBoardId ?? 0)) ?>"
+                                               class="btn btn-sm btn-outline-danger flex-grow-1 py-1">
+                                                <i class="bi bi-trash"></i> <span class="d-none d-md-inline">Löschen</span>
+                                            </a>
                                         </div>
                                     </div>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <div class="text-center py-5 text-muted small opacity-75">
-                                    <i class="bi bi-inbox fs-2 d-block mb-2"></i>
-                                    Keine Aufgaben
                                 </div>
-                            <?php endif; ?>
-                        </div>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="text-center py-5 text-muted small opacity-75">
+                                <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+                                Keine Aufgaben
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
+            </div>
             <?php endforeach; ?>
         <?php else: ?>
             <div class="col-12 text-center py-4">
@@ -132,3 +131,10 @@
     </div>
 </div>
 
+<script>
+
+    const tasks = {
+        updateUrl: '<?= base_url("tasks/updatecolumn") ?>',
+    };
+</script>
+<script src="<?= base_url('js/draganddrop.js') ?>"></script>

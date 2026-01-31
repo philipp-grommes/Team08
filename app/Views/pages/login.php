@@ -1,14 +1,17 @@
-
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="card shadow border-0 p-4" style="max-width: 400px; width: 100%; border-radius: 15px;">
-
         <div class="text-center mb-4">
             <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
                 <i class="fas fa-user-lock fa-lg"></i>
             </div>
+
+<!-- Überschrift -->
+
             <h1 class="fs-4 fw-bold mb-1">Herzlich Willkommen!</h1>
             <p class="text-muted small">Bitte geben Sie Ihre Login-Daten ein</p>
         </div>
+
+<!-- Formular -->
 
         <form action="<?= base_url('login/authenticateuser')?>" method="post">
             <?= csrf_field() ?>
@@ -36,9 +39,9 @@
                         <?= session()->getFlashdata('error') ?>
                     </div>
                 <?php endif; ?>
-
-
             </div>
+
+<!-- Button zum Login und zum Autologin -->
 
             <div class="d-flex gap-2 mt-4">
                 <button type="submit" name="btnLogin" id="btnLogin" class="btn btn-primary py-2 fw-bold shadow-sm flex-fill" style="border-radius: 8px;">
@@ -50,6 +53,5 @@
                 </button>
             </div>
         </form>
-
     </div>
 </div>
