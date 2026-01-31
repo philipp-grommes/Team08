@@ -28,11 +28,35 @@ class BoardsModel extends Model{
             $this->boards = $this->db->table('boards');
             $this->boards->insert(array('board' => $_POST['board']));
 
-            return redirect()->to(base_url('boards'));
+            $boardID = $this->db->insertID();
+
+            $standard = [
+                [
+                    'spalte' => 'Zu Erledigen',
+                    'boardsid' => $boardID,
+                    'sortid' => 1,
+                    'spaltenbeschreibung' => 'Aufgaben, die noch zu erledigen sind.'
+                ],
+                [
+                    'spalte' => 'In Bearbeitung',
+                    'boardsid' => $boardID,
+                    'sortid' => 1,
+                    'spaltenbeschreibung' => 'Aufgaben, die aktuell in Bearbeitung sind.'
+                ],
+                [
+                    'spalte' => 'In Prüfung',
+                    'boardsid' => $boardID,
+                    'sortid' => 1,
+                    'spaltenbeschreibung' => 'Aufgaben, die noch geprüft werden müssen, bevor sie erledigt sind.'
+                ]
+            ];
+
+            $this->db->table('spalten')->insertBatch($standard);
+
+            return $boardID;
+
         }
-
-        return  redirect()->to(base_url('boards/edit/'));
-
+        return NULL;
     }
 
     public function updateBoard(): void

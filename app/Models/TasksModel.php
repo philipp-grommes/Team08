@@ -38,10 +38,7 @@ class TasksModel extends Model{
                 'notizen' => $_POST['notizen'] ?? '',
                 'erstellungsdatum' => date('Y-m-d')
             ));
-
-            return redirect()->to(base_url('tasks/'));
         }
-        return  redirect()->to(base_url('tasks/edit/'));
     }
 
     public function updateTask(): void

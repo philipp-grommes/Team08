@@ -4,6 +4,7 @@ use CodeIgniter\Model;
 
 class SpaltenModel extends Model{
 
+
     public function getSpalten($spalten_id = NULL): ?array {
         if ($spalten_id != NULL)
             return $this->db->table('spalten')
@@ -29,9 +30,7 @@ class SpaltenModel extends Model{
                                             'boardsid' => $_POST['boardsid'],
                                             'sortid' => $_POST['sortid'],
                                             'spaltenbeschreibung' => $_POST['spaltenbeschreibung']));
-            return redirect()->to(base_url('spalten/'));
         }
-        return  redirect()->to(base_url('spalten/edit/'));
     }
     public function updateSpalte(): void
     {

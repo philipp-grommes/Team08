@@ -51,8 +51,10 @@ class Boards extends BaseController
                 if ($this->request->getPost('id') != '') {
                     $this->boardsModel->updateBoard();
                 } else {
-                    $this->boardsModel->createBoard();
-                    return redirect()->to(base_url('spalten/edit/0/0/'));
+                    $newID = $this->boardsModel->createBoard();
+                    if($newID){
+                        return redirect()->to(base_url('tasks/tasksfromboards/'.$newID));
+                    }
                 }
 
             } else {

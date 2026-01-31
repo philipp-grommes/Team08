@@ -98,7 +98,6 @@ class Tasks extends BaseController {
                 } else {
                     $this->TasksModel->createTask();
                 }
-                return redirect()->to(base_url('tasks/tasksfromboards/' . $boardId));
 
             } else {
                 $data['currentBoardId'] = $boardId;
@@ -111,7 +110,7 @@ class Tasks extends BaseController {
                 $data['error'] = $validation->getErrors();
                 $data['personen'] = $this->TasksModel->getPersonen();
                 $data['taskarten'] = $this->TasksModel->getTaskarten();
-                $data['spalten'] = $this->TasksModel->getSpalten();
+                $data['spalten'] = $this->TasksModel->getSpalten($boardId);
                 $data['boards'] = $this->TasksModel->getBoards();
 
                 echo view('templates/head');
@@ -123,14 +122,8 @@ class Tasks extends BaseController {
         } elseif (isset($_POST['btnLoeschen'])) {
             $id = $this->request->getPost('id');
             $this->TasksModel->deleteTask($id);
-            return redirect()->to(base_url('tasks/tasksfromboards/' . $boardId));
         }
 
         return redirect()->to(base_url('tasks/tasksfromboards/' . $boardId));
     }
-
-        public function getDelete($id = 0) {
-        $this->TasksModel->deleteTask($id);
-            return redirect()->to(base_url('tasks/'));
-        }
 }
