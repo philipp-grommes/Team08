@@ -1,37 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     const updateUrl = tasks.updateUrl;
+    const draggableContainers = Array.from(document.querySelectorAll('.drag-container'));
 
-    const draggableTasks = Array.from(document.querySelectorAll('.drag-container'));
-
-    const drake = dragula(draggableTasks, {
-        revertOnSpill: true
+    const drake = dragula(draggableContainers, {
+        revertOnSpill: true,
+        mirrorContainer: document.body,
     });
 
-    drake.on('drop', function (el, target, source, sibling) {
-        const taskId = el.getAttribute('data-task-id');
-        const newColumnId = target.getAttribute('data-column-id');
-        const oldColumnId = source.getAttribute('data-column-id');
+    drake.on('drop', function (el, target, source) {
+        // Aktualisierung Zielspalte
+        saveColumnOrder(target);
 
-
-        if (newColumnId !== oldColumnId) {
-            updateTaskInDatabase(taskId, newColumnId, drake);
+        // Aktualisierung Quellspalte
+        if (target !== source) {
+            saveColumnOrder(source);
         }
     });
 
-    function updateTaskInDatabase(taskId, columnId, drakeInstance) {
+    function saveColumnOrder(columnElement) {
+        const columnId = columnElement.getAttribute('data-column-id');
+        const tasksInColumn = Array.from(columnElement.querySelectorAll('.task-card'));
+
         const formData = new FormData();
-        formData.append('task_id', taskId);
+
+        // Für jede Task senden wir id und neue sortid
+        tasksInColumn.forEach((task, index) => {
+            formData.append('task_ids[]', task.getAttribute('data-task-id'));
+            formData.append('sortids[]', index); // 0-basiert
+        });
+
         formData.append('column_id', columnId);
 
-        fetch(tasks.updateUrl, {
+        fetch(updateUrl, {
             method: 'POST',
             body: formData
         })
             .then(response => response.json())
-            .catch(error => {
-                console.error('Netzwerkfehler:', error);
-                drakeInstance.cancel(true);
-            });
+            .then(data => console.log("Spalte " + columnId + " aktualisiert"))
+            .catch(error => console.error('Fehler:', error));
     }
 });

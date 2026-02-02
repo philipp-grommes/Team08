@@ -4,7 +4,7 @@ use CodeIgniter\Model;
 
 class BoardsModel extends Model{
 
-// Funktion um alle oder ein speizifisches Board zu bekommen
+// Funktion um alle oder ein spezifisches Board zu bekommen
     public function getBoards($board_id = NULL): array {
 
         if ($board_id != NULL)
@@ -41,13 +41,13 @@ class BoardsModel extends Model{
                 [
                     'spalte' => 'In Bearbeitung',
                     'boardsid' => $boardID,
-                    'sortid' => 1,
+                    'sortid' => 2,
                     'spaltenbeschreibung' => 'Aufgaben, die aktuell in Bearbeitung sind.'
                 ],
                 [
                     'spalte' => 'In Prüfung',
                     'boardsid' => $boardID,
-                    'sortid' => 1,
+                    'sortid' => 3,
                     'spaltenbeschreibung' => 'Aufgaben, die noch geprüft werden müssen, bevor sie erledigt sind.'
                 ]
             ];

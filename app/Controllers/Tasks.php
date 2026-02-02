@@ -11,7 +11,7 @@ class Tasks extends BaseController {
         $this->TasksModel = new TasksModel();
     }
 
-//Index-Methode für den Aufurf der Seite
+//Index-Methode für den Aufruf der Seite
     public function getIndex(): void {
 
         $data['activeBoardName'] = 'Alle Boards';
@@ -29,6 +29,7 @@ class Tasks extends BaseController {
     public function getTasksfromboards($id = 0): void {
 
         $rawRows = $this->TasksModel->getBoards($id);
+        $SpaltenProBoard = $this->TasksModel->getSpalten($id);
         $viewData = [
             'currentBoardId'  => $id,
             'activeBoardName' => 'Kein Board gewählt',
@@ -36,25 +37,22 @@ class Tasks extends BaseController {
             'allBoards'       => $this->TasksModel->getallBoards('boards')
         ];
 
-        foreach ($rawRows as $row) {
+        foreach ($SpaltenProBoard as $spalte) {
+            $viewData['spalten'][$spalte['id']] = [
+                'name'         => $spalte['spalte'],
+                'beschreibung' => $spalte['spaltenbeschreibung'] ?? '',
+                'tasks'        => []
+            ];
+        }
 
+        foreach ($rawRows as $row) {
             if ($viewData['activeBoardName'] === 'Kein Board gewählt') {
                 $viewData['activeBoardName'] = $row['board_name'];
             }
 
             $sId = $row['spalte_id'];
-            if ($sId) {
-
-                if (!isset($viewData['spalten'][$sId])) {
-                    $viewData['spalten'][$sId] = [
-                        'name'         => $row['spalte_name'],
-                        'beschreibung' => $row['spaltenbeschreibung'],
-                        'tasks'        => []
-                    ];
-                }
-                if (!empty($row['task_id'])) {
-                    $viewData['spalten'][$sId]['tasks'][] = $row;
-                }
+            if ($sId && !empty($row['task_id'])) {
+                $viewData['spalten'][$sId]['tasks'][] = $row;
             }
         }
 
@@ -126,12 +124,18 @@ class Tasks extends BaseController {
         return redirect()->to(base_url('tasks/tasksfromboards/' . $boardId));
     }
 
-    public function postUpdatecolumn(){
-        $taskId   = $this->request->getPost('task_id');
-        $columnId = $this->request->getPost('column_id');
+    public function postUpdatecolumn()
+    {
+        $taskIds  = $this->request->getPost('task_ids');
+        $sortIds  = $this->request->getPost('sortids');
+        $columnId = (int) $this->request->getPost('column_id');
 
-        $success = $this->TasksModel->updateTaskColumn($taskId, $columnId);
+        if (!$taskIds || !$sortIds || !$columnId) {
+            return $this->response->setJSON(['success' => false]);
+        }
 
-        return $this->response->setJSON(['success' => $success]);
+        $this->TasksModel->updateColumnOrder($taskIds, $sortIds, $columnId);
+
+        return $this->response->setJSON(['success' => true]);
     }
 }

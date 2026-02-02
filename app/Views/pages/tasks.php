@@ -109,11 +109,6 @@
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                        <?php else: ?>
-                            <div class="text-center py-5 text-muted small opacity-75">
-                                <i class="bi bi-inbox fs-2 d-block mb-2"></i>
-                                Keine Aufgaben
-                            </div>
                         <?php endif; ?>
                     </div>
                 </div>

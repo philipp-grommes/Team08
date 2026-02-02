@@ -20,7 +20,7 @@ class TasksModel extends Model{
                 ->select('tasks.*, personen.vorname, personen.name, taskarten.taskartenicon, taskarten.taskart as taskartenname')
                 ->join('personen', 'personen.id = tasks.personenid')
                 ->join('taskarten', 'taskarten.id = tasks.taskartenid', 'left')
-                ->orderBy('tasks', 'ASC')
+                ->orderBy('tasks.sortid', 'ASC')
                 ->get()
                 ->getResultArray();
     }
@@ -32,7 +32,7 @@ class TasksModel extends Model{
         $builder->select('
             boards.id as board_id, boards.board as board_name,
             spalten.id as spalte_id, spalten.spalte as spalte_name, spalten.spaltenbeschreibung,
-            tasks.id as task_id, tasks.tasks as task_titel, tasks.notizen, tasks.erstellungsdatum, tasks.erinnerungsdatum,
+            tasks.id as task_id, tasks.sortid , tasks.tasks as task_titel, tasks.notizen, tasks.erstellungsdatum, tasks.erinnerungsdatum,
             personen.vorname, personen.name as nachname, taskarten.taskartenicon, taskarten.taskart as taskartenname')
             ->join('spalten', 'spalten.boardsid = boards.id', 'left')
             ->join('tasks', 'tasks.spaltenid = spalten.id', 'left')
@@ -42,7 +42,7 @@ class TasksModel extends Model{
         if ($board_id !== NULL) {
             $builder->where('boards.id', $board_id);
         }
-        return $builder->orderBy('spalten.sortid', 'ASC')->get()->getResultArray();
+        return $builder->orderBy('spalten.sortid', 'ASC')->orderBy('tasks.sortid','ASC')->get()->getResultArray();
     }
 
 // -DB-Insert für neue Tasks
@@ -93,7 +93,7 @@ class TasksModel extends Model{
 // -DB-Abfrage für Auswahl der Spalten beim Erstellen
     public function getSpalten($id = 0): array{
 
-        return $this->db->table('spalten')->select('*')->where('spalten.boardsid', $id)->get()->getResultArray();
+        return $this->db->table('spalten')->select('*')->where('spalten.boardsid', $id)->orderBy('sortid','ASC')->get()->getResultArray();
     }
 
 // -DB-Abfrage für Auswahl der Boards beim Erstellen
@@ -109,9 +109,20 @@ class TasksModel extends Model{
     }
 
 // -DB-Update der Spalten für Drag and Drop
-    public function updateTaskColumn($taskId, $columnId){
+    public function updateColumnOrder(array $taskIds, array $sortIds, int $columnId)
+    {
+        $builder = $this->db->table('tasks');
 
-        return $this->db->table('tasks')->where('id', $taskId)->update(['spaltenid' => $columnId]);
+        foreach ($taskIds as $index => $taskId) {
+            $builder
+                ->where('id', $taskId)
+                ->update([
+                    'spaltenid' => $columnId,
+                    'sortid'    => (int) $sortIds[$index]
+                ]);
+        }
+
+        return true;
     }
 
 
