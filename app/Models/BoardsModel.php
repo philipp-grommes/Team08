@@ -67,33 +67,12 @@ class BoardsModel extends Model{
         $this->boards->update(array('board' => $_POST['board']));
     }
 
-//Funktion um ein Board zu löschen // Bitte die Logik noch auf die DB umlegen!!
+//Funktion um ein Board zu löschen
     public function deleteBoard(): void
     {
-        $this->db->transStart();
-
-        $this->spalten = $this->db->table('spalten')
-            ->select('id')
-            ->where('boardsid', $_POST['id'])
-            ->get()
-            ->getResultArray();
-
-        foreach ($this->spalten as $spalte) {
-            $this->tasks = $this->db->table('tasks')
-                ->where('spaltenid', $spalte['id'])
-                ->delete();
-        }
-
-        $this->db->table('spalten')
-            ->where('boardsid', $_POST['id'])
-            ->delete();
-
         $this->db->table('boards')
             ->where('id', $_POST['id'])
             ->delete();
-
-        $this->db->transComplete();
-
     }
 
 }

@@ -47,21 +47,13 @@ class SpaltenModel extends Model{
                                         'spaltenbeschreibung' => $_POST['spaltenbeschreibung']));
     }
 
-// DB-Delete zum Löschen einer Spalte  //Logik bitte noch auf datenbank auslagern
+// DB-Delete zum Löschen einer Spalte
     public function deleteSpalte(): void{
-
-        $this->db->transStart();
-
-        $this->db->table('tasks')
-            ->select('id')
-            ->where('spaltenid', $_POST['id'])
-            ->delete();
 
         $this->db->table('spalten')
             ->where('id', $_POST['id'])
             ->delete();
 
-        $this->db->transComplete();
     }
 // DB-Abfrage zum Erhalten aller Boards
     public function getBoards(): array{
