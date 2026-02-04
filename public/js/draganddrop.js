@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function () {
             body: formData
         })
             .then(response => response.json())
-            .then(data => console.log("Spalte " + columnId + " aktualisiert"))
             .catch(error => console.error('Fehler:', error));
     }
 });

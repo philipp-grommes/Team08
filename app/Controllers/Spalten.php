@@ -72,4 +72,15 @@ class Spalten extends BaseController{
         }
         return redirect()->to(base_url('spalten'));
     }
+
+// Funktion, um die auswählbaren SortIDs für eine Spalte zu bekommen
+    public function getSortids($boardId)
+    {
+        $sortIds = $this->spaltenModel->getSortidsByBoard($boardId);
+
+        $max = empty($sortIds) ? 0 : max($sortIds);
+        $sortIds[] = $max + 1;
+
+        return $this->response->setJSON($sortIds);
+    }
 }

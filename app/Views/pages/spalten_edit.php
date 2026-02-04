@@ -42,18 +42,6 @@
                     </div>
 
                     <div class="row mb-4">
-                        <label for="sortid" class="col-sm-2 col-form-label">Sortid</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control <?= isset($error['sortid']) ? 'is-invalid' : '' ?>" id="sortid" name="sortid" value="<?= isset($spalten['sortid']) ? ($spalten['sortid']) : '' ?>" <?= $lock ?>>
-                            <?php if (isset($error['sortid'])) : ?>
-                                <div class="invalid-feedback">
-                                    <?= ($error['sortid']) ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-
-                    <div class="row mb-4">
                         <label for="boardsid" class="col-sm-2 col-form-label">Board auswählen</label>
                         <div class="col-sm-10">
                             <select class="form-select <?= isset($error['boardsid']) ? 'is-invalid' : '' ?>" id="boardsid" name="boardsid" <?= $disabled ?>>
@@ -74,6 +62,28 @@
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <div class="row mb-4">
+                        <label for="sortid" class="col-sm-2 col-form-label">Position</label>
+                        <div class="col-sm-10">
+                            <select class="form-select <?= isset($error['sortid']) ? 'is-invalid' : '' ?>" id="sortid" name="sortid"<?= $lock ?>>
+                                <?php if (!empty($spalten['sortid'])): ?>
+                                    <option value="<?= $spalten['sortid'] ?>" selected>
+                                        <?= $spalten['sortid'] ?>
+                                    </option>
+                                <?php else: ?>
+                                    <option value="">-- zuerst Board wählen --</option>
+                                <?php endif; ?>
+                            </select>
+
+                            <?php if (isset($error['sortid'])) : ?>
+                                <div class="invalid-feedback">
+                                    <?= $error['sortid'] ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
                 </fieldset>
 
                 <div class="row mt-4">
@@ -99,3 +109,7 @@
         </div>
     </div>
 </div>
+<script>
+    window.baseUrl = "<?= base_url() ?>";
+</script>
+<script src="<?= base_url('js/spaltensortid.js') ?>"></script>

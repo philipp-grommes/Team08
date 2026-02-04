@@ -28,8 +28,13 @@ class SpaltenModel extends Model{
 
         if (!empty($_POST['spalte']) && !empty($_POST['boardsid']) && !empty($_POST['spaltenbeschreibung'])) {
 
-            $this->spalten = $this->db->table('spalten');
-            $this->spalten->insert(array(   'spalte' => $_POST['spalte'],
+            $this->db->table('spalten')
+                ->set('sortid', 'sortid + 1', false)
+                ->where('boardsid', $_POST['boardsid'])
+                ->where('sortid >=', $_POST['sortid'])
+                ->update();
+
+            $this->db->table('spalten')->insert(array(   'spalte' => $_POST['spalte'],
                                             'boardsid' => $_POST['boardsid'],
                                             'sortid' => $_POST['sortid'],
                                             'spaltenbeschreibung' => $_POST['spaltenbeschreibung']));
@@ -39,26 +44,72 @@ class SpaltenModel extends Model{
 // DB-Update um Änderungen zu speichern
     public function updateSpalte(): void{
 
-        $this->spalten = $this->db->table('spalten');
-        $this->spalten->where('spalten.id', $_POST['id']);
-        $this->spalten->update(array(   'spalte' => $_POST['spalte'],
-                                        'boardsid' => $_POST['boardsid'],
-                                        'sortid' => $_POST['sortid'],
-                                        'spaltenbeschreibung' => $_POST['spaltenbeschreibung']));
+        $olddata = $this->db->table('spalten')
+            ->where('id', $_POST['id'])
+            ->get()
+            ->getRowArray();
+
+        if (
+            $olddata['boardsid'] != $_POST['boardsid'] ||
+            $olddata['sortid'] != $_POST['sortid']
+        ) {
+            $this->db->table('spalten')
+                ->set('sortid', 'sortid + 1', false)
+                ->where('boardsid', $_POST['boardsid'])
+                ->where('sortid >=', $_POST['sortid'])
+                ->update();
+        }
+
+        $this->db->table('spalten')
+            ->where('id', $_POST['id'])
+            ->update(array(
+                'spalte' => $_POST['spalte'],
+                'boardsid' => $_POST['boardsid'],
+                'sortid' => $_POST['sortid'],
+                'spaltenbeschreibung' => $_POST['spaltenbeschreibung']
+            ));
     }
 
 // DB-Delete zum Löschen einer Spalte
     public function deleteSpalte(): void{
 
+        $olddata = $this->db->table('spalten')
+            ->where('id', $_POST['id'])
+            ->get()
+            ->getRowArray();
+
+        if (!$olddata) {
+            return;
+        }
+
         $this->db->table('spalten')
             ->where('id', $_POST['id'])
             ->delete();
+
+        $this->db->table('spalten')
+            ->set('sortid', 'sortid - 1', false)
+            ->where('boardsid', $olddata['boardsid'])
+            ->where('sortid >', $olddata['sortid'])
+            ->update();
 
     }
 // DB-Abfrage zum Erhalten aller Boards
     public function getBoards(): array{
 
         return $this->db->table('boards')->select('*')->get()->getResultArray();
+    }
+
+// DB-Abfrage zum Erhalten aller SortIDs pro Board
+    public function getSortidsByBoard($boardId): array
+    {
+        $result = $this->db->table('spalten')
+            ->select('sortid')
+            ->where('boardsid', $boardId)
+            ->orderBy('sortid', 'ASC')
+            ->get()
+            ->getResultArray();
+
+        return array_column($result, 'sortid');
     }
 }
 
