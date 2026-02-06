@@ -10,11 +10,4 @@ class Home extends BaseController
     {
         return redirect()->to(base_url('tasks'));
     }
-
-    public function getFooter(){
-        echo view ('templates/header');
-        echo view ('templates/navbar');
-        echo view ('templates/footer');
-
-    }
 }
