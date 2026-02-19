@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class LoginModel extends Model{
+class MainModel extends Model{
 
-//Funktion um EMail und Passwort für den Login zu bekommen
+//Funktion um EMail und Passwort für den Main zu bekommen
     public function login($email) {
 
             return $this->db->table('personen')

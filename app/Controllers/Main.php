@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\LoginModel;
+use App\Models\MainModel;
 
 
-class Login extends BaseController{
+class Main extends BaseController{
 
-//Konstuktor für das LoginModel
+//Konstuktor für das MainModel
     public function __construct(){
-        $this->LoginModel = new LoginModel();
+        $this->MainModel = new MainModel();
     }
 
 //Index-Methode bei Aufruf der Seite
@@ -25,7 +25,7 @@ class Login extends BaseController{
 
         if (isset($_POST['btnLogin'])) {
                 $passwordView = $_POST['passwort'];
-                   $data = $this->LoginModel->login($_POST['email']);
+                   $data = $this->MainModel->login($_POST['email']);
                 if ($data && password_verify($passwordView, $data['passwort'])) {
                     session()->set([
                         'isLoggedIn' => true,
@@ -50,5 +50,12 @@ class Login extends BaseController{
     public function getLogout(){
         session()->destroy();
         return redirect()->to(base_url('login'));
+    }
+
+    public function getImpressum(){
+        echo view ('templates/head');
+        echo view ('templates/navbar');
+        echo view ('pages/impressum');
+        echo view ('templates/footer');
     }
 }
