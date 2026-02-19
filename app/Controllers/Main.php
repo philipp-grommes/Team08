@@ -14,7 +14,7 @@ class Main extends BaseController{
 //Index-Methode bei Aufruf der Seite
     public function getIndex(): void{
         echo view('templates/head');
-        echo view('templates/navbar_login');
+        echo view('templates/navbar');
         echo view('pages/login');
         echo view('templates/footer');
     }

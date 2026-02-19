@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const id = this.dataset.id;
 
-            // Hidden Input setzen
+    // Hidden Input setzen
             document.getElementById('taskartenid').value = id;
 
-            // aktive Taskart setzen
+    // Setzen der ausgewählten Taskart
             document.querySelectorAll('.taskart-btn').forEach(function (b) {
                 b.classList.remove('active');
             });
@@ -26,4 +26,27 @@ document.addEventListener('DOMContentLoaded', function () {
             selectedBtn.classList.add('active');
         }
     }
+})
+
+    //Funktion für die CheckBox
+
+document.addEventListener('DOMContentLoaded', function() {
+    const checkbox = document.getElementById('erinnerung');
+    const dateRow = document.getElementById('erinnerungsdatum-row');
+
+    function toggleDateVisibility() {
+        if (checkbox.checked) {
+            // Zeigt die Zeile an (Bootstrap nutzt d-flex für rows, daher nutzen wir '' oder 'flex')
+            dateRow.style.display = 'flex';
+        } else {
+            // Versteckt die Zeile
+            dateRow.style.display = 'none';
+        }
+    }
+
+    // Event-Listener für Klicks auf die Checkbox
+    checkbox.addEventListener('change', toggleDateVisibility);
+
+    // Initialer Aufruf beim Laden der Seite (falls die Checkbox schon gesetzt ist)
+    toggleDateVisibility();
 });

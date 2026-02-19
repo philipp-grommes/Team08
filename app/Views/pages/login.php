@@ -14,7 +14,6 @@
 <!-- Formular -->
 
         <form action="<?= base_url('login/authenticateuser')?>" method="post">
-            <?= csrf_field() ?>
             <div class="mb-3">
                 <label for="email" class="form-label small fw-bold text-secondary">Email-Adresse</label>
                 <div class="input-group">

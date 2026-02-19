@@ -48,13 +48,17 @@ class TasksModel extends Model{
 // -DB-Insert für neue Tasks
     public function createTask(){
 
+
+
         if (!empty($_POST['tasks'])){
             $this->tasks = $this->db->table('tasks');
+
+            $erinnerungsdatum = !empty($_POST['erinnerungsdatum']) ? $_POST['erinnerungsdatum'] : null;
             $this->tasks->insert(array('tasks' => $_POST['tasks'],
                 'taskartenid' => $_POST['taskartenid'],
                 'personenid' => $_POST['personenid'],
                 'spaltenid' => $_POST['spaltenid'],
-                'erinnerungsdatum' => $_POST['erinnerungsdatum'],
+                'erinnerungsdatum' => $erinnerungsdatum,
                 'erinnerung' => (int)$_POST['erinnerung'],
                 'notizen' => $_POST['notizen'] ?? '',
                 'erstellungsdatum' => date('Y-m-d')

@@ -8,23 +8,22 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     drake.on('drop', function (el, target, source) {
-        // Aktualisierung Zielspalte
+// Aktualisierung Zielspalte
         saveColumnOrder(target);
 
-        // Aktualisierung Quellspalte
+// Aktualisierung Quellspalte
         if (target !== source) {
             saveColumnOrder(source);
         }
     });
 
-    // Funktion, welche die Ordnung nach sortid innerhalb der Spalte setzt
+// Funktion, welche die Ordnung nach sortid innerhalb der Spalte setzt
     function saveColumnOrder(columnElement) {
         const columnId = columnElement.getAttribute('data-column-id');
         const tasksInColumn = Array.from(columnElement.querySelectorAll('.task-card'));
 
         const formData = new FormData();
-
-        // Für jede Task senden wir id und neue sortid
+// Für jede Task senden wir id und neue sortid
         tasksInColumn.forEach((task, index) => {
             formData.append('task_ids[]', task.getAttribute('data-task-id'));
             formData.append('sortids[]', index); // 0-basiert

@@ -13,9 +13,14 @@
             $error = $error ?? [];
             ?>
 
+<!-- Card Body mit Formular -->
+
             <form action="<?= base_url('spalten/speichern') ?>" method="post">
                 <input type="hidden" name="id" value="<?= isset($spalten['id']) ? ($spalten['id']) : '' ?>">
 
+<!-- Fieldset zum anpassen der Spalten -->
+
+                <!-- Spaltenbezeichnung -->
                 <fieldset>
                     <div class="row mb-4">
                         <label for="spalte" class="col-sm-2 col-form-label">Spalten-Bezeichnung</label>
@@ -29,6 +34,8 @@
                         </div>
                     </div>
 
+                    <!-- Spaltenbeschreibung -->
+
                     <div class="row mb-4">
                         <label for="spaltenbeschreibung" class="col-sm-2 col-form-label">Spalten-Beschreibung</label>
                         <div class="col-sm-10">
@@ -40,6 +47,8 @@
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <!-- Boards -->
 
                     <div class="row mb-4">
                         <label for="boardsid" class="col-sm-2 col-form-label">Board auswählen</label>
@@ -62,6 +71,8 @@
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <!-- SortID -->
 
                     <div class="row mb-4">
                         <label for="sortid" class="col-sm-2 col-form-label">Position</label>
@@ -88,6 +99,8 @@
 
                 </fieldset>
 
+                <!-- Button am Ende des Formulares (SPeichern/Löschen und Abbrechen je nach To Do) -->
+
                 <div class="row mt-4">
                     <div class="col-sm-10 offset-sm-2 d-flex gap-2">
                         <?php if($todo == 0) : ?>
@@ -111,6 +124,8 @@
         </div>
     </div>
 </div>
+
+<!-- Einbindung JS-Datei -->
 <script>
     window.baseUrl = "<?= base_url() ?>";
     window.todo = "<?= $todo ?>";

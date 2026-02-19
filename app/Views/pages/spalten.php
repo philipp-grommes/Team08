@@ -5,6 +5,8 @@
                 <div class="card-header d-flex justify-content-between align-items-center mb-4">
                     <h1 class="fs-5 mb-0">Spalten</h1>
 
+<!-- Button "Spalte erstellen" -->
+
                     <a href="<?=base_url('spalten/edit/0/0/')?>">
                         <button class="mt-2 mb-2 btn btn-sm btn-primary" type="button">
                             + Spalten erstellen
@@ -14,6 +16,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Card Body mit Spalten aus DB -->
 
     <div class="card-body">
         <div class="table-responsive">

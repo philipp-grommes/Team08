@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!board || !sortid) return;
 
-    //Wenn das Board im edit geändert wird -> SortID Optionen freigeschaltet
+//Wenn das Board im edit geändert wird -> SortID Optionen freigeschaltet
     board.addEventListener('change', () => {
 
         fetch(`${window.baseUrl}/spalten/sortids/${boardId}/${window.todo}`)

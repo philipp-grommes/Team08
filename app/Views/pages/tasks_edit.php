@@ -13,6 +13,8 @@
             $error = $error ?? [];
             ?>
 
+            <!-- Bearbeitungsformular -->
+
             <form action="<?= base_url('tasks/speichern') ?>" method="post">
 
                 <div class="form-group row mb-3">
@@ -29,17 +31,20 @@
                     </div>
                 </div>
 
-
+                <!-- Taskarten -->
 
                 <div class="form-group row mb-3">
                     <label for="taskartenid" class="col-sm-2 col-form-label">Taskart:</label>
                     <div class="col-sm-10">
 
                         <!-- Hidden Input -->
+
                         <input type="hidden" id="taskartenid" name="taskartenid"
                                value="<?= isset($tasks['taskartenid']) ? $tasks['taskartenid'] : '' ?>">
+                        <input type="hidden" name="boardsid" value="<?= ($currentBoardId ?? '1') ?>">
 
                         <!-- Button-Gruppe -->
+
                         <div class="btn-group" role="group" aria-label="Taskarten">
                             <?php if (isset($taskarten) && is_array($taskarten)): ?>
                                 <?php foreach ($taskarten as $taskart): ?>
@@ -60,6 +65,8 @@
                         <?php endif; ?>
                     </div>
                 </div>
+
+                <!-- Zugewiesene Person -->
 
                 <div class="form-group row mb-3">
                     <label for="personenid" class="col-sm-2 col-form-label">Zugewiesene Person:</label>
@@ -82,6 +89,8 @@
                     </div>
                 </div>
 
+                <!-- Spalten -->
+
                 <div class="form-group row mb-3">
                     <label for="spaltenid" class="col-sm-2 col-form-label">Spalte:</label>
                     <div class="col-sm-10">
@@ -103,6 +112,8 @@
                     </div>
                 </div>
 
+                <!-- Erinnerung -->
+
                 <div class="form-group row mb-3">
                     <label for="erinnerung" class="col-sm-2 col-form-label">Erinnerung:</label>
                     <div class="col-sm-10 d-flex align-items-center">
@@ -111,10 +122,9 @@
                     </div>
                 </div>
 
-                <input type="hidden" name="boardsid" value="<?= htmlspecialchars($currentBoardId ?? '1') ?>">
+                <!-- Erinnerungsdatum -->
 
-                <div class="form-group row mb-3">
-                    <label for="erinnerungsdatum" class="col-sm-2 col-form-label">Erinnerungsdatum:</label>
+                <div class="form-group row mb-3" id="erinnerungsdatum-row"> <label for="erinnerungsdatum" class="col-sm-2 col-form-label">Erinnerungsdatum:</label>
                     <div class="col-sm-10">
                         <input type="datetime-local"
                                class="form-control <?= isset($error['erinnerungsdatum']) ? 'is-invalid' : '' ?>"
@@ -126,18 +136,20 @@
                     </div>
                 </div>
 
-
+                <!-- Notizen -->
 
                 <div class="form-group row mb-3">
                     <label for="notizen" class="col-sm-2 col-form-label">Notiz:</label>
                     <div class="col-sm-10">
                         <textarea class="form-control <?= isset($error['notizen']) ? 'is-invalid' : '' ?>"
-                                  rows="4" style="resize : none" id="notizen" name="notizen" <?= $lock ?>><?= isset($tasks['notizen']) ? esc($tasks['notizen']) : '' ?></textarea>
+                                  rows="4" style="resize : none" id="notizen" name="notizen" <?= $lock ?>><?= isset($tasks['notizen']) ? ($tasks['notizen']) : '' ?></textarea>
                         <?php if (isset($error['notizen'])) : ?>
-                            <div class="invalid-feedback"><?= esc($error['notizen']) ?></div>
+                            <div class="invalid-feedback"><?= ($error['notizen']) ?></div>
                         <?php endif; ?>
                     </div>
                 </div>
+
+                <!-- Buttons zum Speichern/Löschen der Task sowie Abbruchbutton -->
 
                 <div class="row mt-4">
                     <div class="col-sm-2"></div>
@@ -163,5 +175,7 @@
         </div>
     </div>
 </div>
+
+<!-- Einbindung JS -->
 
 <script src="<?= base_url('js/taskart.js') ?>"></script>
