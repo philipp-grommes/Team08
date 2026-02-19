@@ -74,10 +74,15 @@
                                             <span><?= (($item['vorname'] ?? '') . ' ' . ($item['nachname'] ?? '')); ?></span>
                                         </div>
 
+
+
                                         <div class="d-flex align-items-start mb-2 text-muted small">
-                                            <i class="bi bi-card-text me-2 text-secondary" style="width: 18px;"></i>
-                                            <span class="text-truncate-2"><?= ($item['notizen'] ?? '-'); ?></span>
+                                            <i class="bi bi-card-text me-2 text-secondary flex-shrink-0" style="width: 18px; margin-top: 2px;"></i>
+                                            <span class="text-break w-100"><?= ($item['notizen'] ?? '-'); ?></span>
                                         </div>
+
+
+
 
                                         <div class="d-flex align-items-center mb-2 text-muted small">
                                             <i class="bi bi-calendar3 me-2 text-secondary" style="width: 18px;"></i>

@@ -124,6 +124,8 @@ class Tasks extends BaseController {
         return redirect()->to(base_url('tasks/tasksfromboards/' . $boardId));
     }
 
+
+    //Gucken!!!!!!
     public function postUpdatecolumn()
     {
         $taskIds  = $this->request->getPost('task_ids');
