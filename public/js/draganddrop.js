@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Funktion, welche die Ordnung nach sortid innerhalb der Spalte setzt
     function saveColumnOrder(columnElement) {
         const columnId = columnElement.getAttribute('data-column-id');
         const tasksInColumn = Array.from(columnElement.querySelectorAll('.task-card'));

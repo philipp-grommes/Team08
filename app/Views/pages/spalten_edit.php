@@ -66,11 +66,13 @@
                     <div class="row mb-4">
                         <label for="sortid" class="col-sm-2 col-form-label">Position</label>
                         <div class="col-sm-10">
-                            <select class="form-select <?= isset($error['sortid']) ? 'is-invalid' : '' ?>" id="sortid" name="sortid"<?= $lock ?>>
-                                <?php if (!empty($spalten['sortid'])): ?>
-                                    <option value="<?= $spalten['sortid'] ?>" selected>
-                                        <?= $spalten['sortid'] ?>
-                                    </option>
+                            <select class="form-select" id="sortid" name="sortid" <?= $disabled ?>>
+                                <?php if (!empty($availableSortIds)): ?>
+                                    <?php foreach ($availableSortIds as $sId): ?>
+                                        <option value="<?= $sId ?>" <?= ($spalten['sortid'] == $sId) ? 'selected' : '' ?>>
+                                            <?= $sId ?>
+                                        </option>
+                                    <?php endforeach; ?>
                                 <?php else: ?>
                                     <option value="">-- zuerst Board wählen --</option>
                                 <?php endif; ?>
@@ -111,5 +113,6 @@
 </div>
 <script>
     window.baseUrl = "<?= base_url() ?>";
+    window.todo = "<?= $todo ?>";
 </script>
 <script src="<?= base_url('js/spaltensortid.js') ?>"></script>

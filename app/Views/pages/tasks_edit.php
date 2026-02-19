@@ -164,32 +164,4 @@
     </div>
 </div>
 
-<script>
-    document.querySelectorAll('.taskart-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-
-            const id = this.dataset.id;
-
-            // Hidden Input setzen
-            document.getElementById('taskartenid').value = id;
-
-            // aktive Klasse setzen
-            document.querySelectorAll('.taskart-btn').forEach(function(b){
-                b.classList.remove('active');
-            });
-            this.classList.add('active');
-        });
-    });
-</script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        const selectedId = document.getElementById('taskartenid').value;
-        if (selectedId) {
-            const selectedBtn = document.querySelector('.taskart-btn[data-id="' + selectedId + '"]');
-            if (selectedBtn) {
-                selectedBtn.classList.add('active');
-            }
-        }
-    });
-</script>
+<script src="<?= base_url('js/taskart.js') ?>"></script>

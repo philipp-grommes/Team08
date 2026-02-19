@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!board || !sortid) return;
 
+    //Wenn das Board im edit geändert wird -> SortID Optionen freigeschaltet
     board.addEventListener('change', () => {
 
-        fetch(`${window.baseUrl}/spalten/sortids/${board.value}`)
+        fetch(`${window.baseUrl}/spalten/sortids/${boardId}/${window.todo}`)
             .then(r => r.json())
             .then(data => {
                 sortid.innerHTML = '';

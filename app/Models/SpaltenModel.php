@@ -42,30 +42,66 @@ class SpaltenModel extends Model{
     }
 
 // DB-Update um Änderungen zu speichern
-    public function updateSpalte(): void{
+    public function updateSpalte(): void {
+        $id = $_POST['id'];
+        $newBoardId = $_POST['boardsid'];
+        $newSortId = (int)$_POST['sortid'];
 
-        $olddata = $this->db->table('spalten')
-            ->where('id', $_POST['id'])
+        // Aktuelle Daten vor dem Update holen
+        $oldData = $this->db->table('spalten')
+            ->where('id', $id)
             ->get()
             ->getRowArray();
 
-        if (
-            $olddata['boardsid'] != $_POST['boardsid'] ||
-            $olddata['sortid'] != $_POST['sortid']
-        ) {
+        if (!$oldData) return;
+
+        $oldBoardId = $oldData['boardsid'];
+        $oldSortId = (int)$oldData['sortid'];
+
+        // Fall 1: Board hat sich geändert
+        if ($oldBoardId != $newBoardId) {
+            // 1. Lücke im alten Board schließen
+            $this->db->table('spalten')
+                ->set('sortid', 'sortid - 1', false)
+                ->where('boardsid', $oldBoardId)
+                ->where('sortid >', $oldSortId)
+                ->update();
+
+            // 2. Platz im neuen Board schaffen
             $this->db->table('spalten')
                 ->set('sortid', 'sortid + 1', false)
-                ->where('boardsid', $_POST['boardsid'])
-                ->where('sortid >=', $_POST['sortid'])
+                ->where('boardsid', $newBoardId)
+                ->where('sortid >=', $newSortId)
                 ->update();
         }
+        // Fall 2: Selbes Board, aber Position hat sich geändert
+        elseif ($oldSortId != $newSortId) {
+            if ($newSortId < $oldSortId) {
+                // Nach oben schieben: Alles dazwischen muss +1 nach unten
+                $this->db->table('spalten')
+                    ->set('sortid', 'sortid + 1', false)
+                    ->where('boardsid', $oldBoardId)
+                    ->where('sortid >=', $newSortId)
+                    ->where('sortid <', $oldSortId)
+                    ->update();
+            } else {
+                // Nach unten schieben: Alles dazwischen muss -1 nach oben
+                $this->db->table('spalten')
+                    ->set('sortid', 'sortid - 1', false)
+                    ->where('boardsid', $oldBoardId)
+                    ->where('sortid >', $oldSortId)
+                    ->where('sortid <=', $newSortId)
+                    ->update();
+            }
+        }
 
+        // Erst jetzt den eigentlichen Datensatz aktualisieren
         $this->db->table('spalten')
-            ->where('id', $_POST['id'])
+            ->where('id', $id)
             ->update(array(
                 'spalte' => $_POST['spalte'],
-                'boardsid' => $_POST['boardsid'],
-                'sortid' => $_POST['sortid'],
+                'boardsid' => $newBoardId,
+                'sortid' => $newSortId,
                 'spaltenbeschreibung' => $_POST['spaltenbeschreibung']
             ));
     }
